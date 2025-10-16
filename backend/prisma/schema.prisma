@@ -17,7 +17,8 @@ datasource db {
 model Questions {
     id Int @id @default(autoincrement())
     question String
-    answers Json?
+    options Json?
+    image String?
     type String
     correct_answer String
 }

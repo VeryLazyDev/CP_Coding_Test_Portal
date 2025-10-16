@@ -123,7 +123,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.QuestionsScalarFieldEnum = {
   id: 'id',
   question: 'question',
-  answers: 'answers',
+  options: 'options',
+  image: 'image',
   type: 'type',
   correct_answer: 'correct_answer'
 };
