@@ -883,6 +883,7 @@ export namespace Prisma {
   export type QuestionsMinAggregateOutputType = {
     id: number | null
     question: string | null
+    image: string | null
     type: string | null
     correct_answer: string | null
   }
@@ -890,6 +891,7 @@ export namespace Prisma {
   export type QuestionsMaxAggregateOutputType = {
     id: number | null
     question: string | null
+    image: string | null
     type: string | null
     correct_answer: string | null
   }
@@ -897,7 +899,8 @@ export namespace Prisma {
   export type QuestionsCountAggregateOutputType = {
     id: number
     question: number
-    answers: number
+    options: number
+    image: number
     type: number
     correct_answer: number
     _all: number
@@ -915,6 +918,7 @@ export namespace Prisma {
   export type QuestionsMinAggregateInputType = {
     id?: true
     question?: true
+    image?: true
     type?: true
     correct_answer?: true
   }
@@ -922,6 +926,7 @@ export namespace Prisma {
   export type QuestionsMaxAggregateInputType = {
     id?: true
     question?: true
+    image?: true
     type?: true
     correct_answer?: true
   }
@@ -929,7 +934,8 @@ export namespace Prisma {
   export type QuestionsCountAggregateInputType = {
     id?: true
     question?: true
-    answers?: true
+    options?: true
+    image?: true
     type?: true
     correct_answer?: true
     _all?: true
@@ -1024,7 +1030,8 @@ export namespace Prisma {
   export type QuestionsGroupByOutputType = {
     id: number
     question: string
-    answers: JsonValue | null
+    options: JsonValue | null
+    image: string | null
     type: string
     correct_answer: string
     _count: QuestionsCountAggregateOutputType | null
@@ -1051,7 +1058,8 @@ export namespace Prisma {
   export type QuestionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     question?: boolean
-    answers?: boolean
+    options?: boolean
+    image?: boolean
     type?: boolean
     correct_answer?: boolean
   }, ExtArgs["result"]["questions"]>
@@ -1059,7 +1067,8 @@ export namespace Prisma {
   export type QuestionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     question?: boolean
-    answers?: boolean
+    options?: boolean
+    image?: boolean
     type?: boolean
     correct_answer?: boolean
   }, ExtArgs["result"]["questions"]>
@@ -1067,7 +1076,8 @@ export namespace Prisma {
   export type QuestionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     question?: boolean
-    answers?: boolean
+    options?: boolean
+    image?: boolean
     type?: boolean
     correct_answer?: boolean
   }, ExtArgs["result"]["questions"]>
@@ -1075,12 +1085,13 @@ export namespace Prisma {
   export type QuestionsSelectScalar = {
     id?: boolean
     question?: boolean
-    answers?: boolean
+    options?: boolean
+    image?: boolean
     type?: boolean
     correct_answer?: boolean
   }
 
-  export type QuestionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "question" | "answers" | "type" | "correct_answer", ExtArgs["result"]["questions"]>
+  export type QuestionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "question" | "options" | "image" | "type" | "correct_answer", ExtArgs["result"]["questions"]>
 
   export type $QuestionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Questions"
@@ -1088,7 +1099,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       question: string
-      answers: Prisma.JsonValue | null
+      options: Prisma.JsonValue | null
+      image: string | null
       type: string
       correct_answer: string
     }, ExtArgs["result"]["questions"]>
@@ -1516,7 +1528,8 @@ export namespace Prisma {
   interface QuestionsFieldRefs {
     readonly id: FieldRef<"Questions", 'Int'>
     readonly question: FieldRef<"Questions", 'String'>
-    readonly answers: FieldRef<"Questions", 'Json'>
+    readonly options: FieldRef<"Questions", 'Json'>
+    readonly image: FieldRef<"Questions", 'String'>
     readonly type: FieldRef<"Questions", 'String'>
     readonly correct_answer: FieldRef<"Questions", 'String'>
   }
@@ -1902,7 +1915,8 @@ export namespace Prisma {
   export const QuestionsScalarFieldEnum: {
     id: 'id',
     question: 'question',
-    answers: 'answers',
+    options: 'options',
+    image: 'image',
     type: 'type',
     correct_answer: 'correct_answer'
   };
@@ -2021,7 +2035,8 @@ export namespace Prisma {
     NOT?: QuestionsWhereInput | QuestionsWhereInput[]
     id?: IntFilter<"Questions"> | number
     question?: StringFilter<"Questions"> | string
-    answers?: JsonNullableFilter<"Questions">
+    options?: JsonNullableFilter<"Questions">
+    image?: StringNullableFilter<"Questions"> | string | null
     type?: StringFilter<"Questions"> | string
     correct_answer?: StringFilter<"Questions"> | string
   }
@@ -2029,7 +2044,8 @@ export namespace Prisma {
   export type QuestionsOrderByWithRelationInput = {
     id?: SortOrder
     question?: SortOrder
-    answers?: SortOrderInput | SortOrder
+    options?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
     type?: SortOrder
     correct_answer?: SortOrder
   }
@@ -2040,7 +2056,8 @@ export namespace Prisma {
     OR?: QuestionsWhereInput[]
     NOT?: QuestionsWhereInput | QuestionsWhereInput[]
     question?: StringFilter<"Questions"> | string
-    answers?: JsonNullableFilter<"Questions">
+    options?: JsonNullableFilter<"Questions">
+    image?: StringNullableFilter<"Questions"> | string | null
     type?: StringFilter<"Questions"> | string
     correct_answer?: StringFilter<"Questions"> | string
   }, "id">
@@ -2048,7 +2065,8 @@ export namespace Prisma {
   export type QuestionsOrderByWithAggregationInput = {
     id?: SortOrder
     question?: SortOrder
-    answers?: SortOrderInput | SortOrder
+    options?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
     type?: SortOrder
     correct_answer?: SortOrder
     _count?: QuestionsCountOrderByAggregateInput
@@ -2064,14 +2082,16 @@ export namespace Prisma {
     NOT?: QuestionsScalarWhereWithAggregatesInput | QuestionsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Questions"> | number
     question?: StringWithAggregatesFilter<"Questions"> | string
-    answers?: JsonNullableWithAggregatesFilter<"Questions">
+    options?: JsonNullableWithAggregatesFilter<"Questions">
+    image?: StringNullableWithAggregatesFilter<"Questions"> | string | null
     type?: StringWithAggregatesFilter<"Questions"> | string
     correct_answer?: StringWithAggregatesFilter<"Questions"> | string
   }
 
   export type QuestionsCreateInput = {
     question: string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: string | null
     type: string
     correct_answer: string
   }
@@ -2079,14 +2099,16 @@ export namespace Prisma {
   export type QuestionsUncheckedCreateInput = {
     id?: number
     question: string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: string | null
     type: string
     correct_answer: string
   }
 
   export type QuestionsUpdateInput = {
     question?: StringFieldUpdateOperationsInput | string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
   }
@@ -2094,7 +2116,8 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
   }
@@ -2102,14 +2125,16 @@ export namespace Prisma {
   export type QuestionsCreateManyInput = {
     id?: number
     question: string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: string | null
     type: string
     correct_answer: string
   }
 
   export type QuestionsUpdateManyMutationInput = {
     question?: StringFieldUpdateOperationsInput | string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
   }
@@ -2117,7 +2142,8 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    answers?: NullableJsonNullValueInput | InputJsonValue
+    options?: NullableJsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
   }
@@ -2171,6 +2197,21 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2179,7 +2220,8 @@ export namespace Prisma {
   export type QuestionsCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
-    answers?: SortOrder
+    options?: SortOrder
+    image?: SortOrder
     type?: SortOrder
     correct_answer?: SortOrder
   }
@@ -2191,6 +2233,7 @@ export namespace Prisma {
   export type QuestionsMaxOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
+    image?: SortOrder
     type?: SortOrder
     correct_answer?: SortOrder
   }
@@ -2198,6 +2241,7 @@ export namespace Prisma {
   export type QuestionsMinOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
+    image?: SortOrder
     type?: SortOrder
     correct_answer?: SortOrder
   }
@@ -2266,8 +2310,30 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2301,6 +2367,20 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2379,6 +2459,23 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
 
