@@ -8,12 +8,20 @@ export async function createNewQuestion(
     correct_answer,
     teamId,
 ) {
-    const question = await prisma.questions.create({
+    const ques = await prisma.questions.create({
+        data:{
         question,
         options,
         image,
         type,
         correct_answer,
         teamId,
+        }
     });
+    return ques;
 }
+
+
+// export async function getAllQuestions() {
+//     const allQuestions = await prisma.questions.findMany()
+// }
