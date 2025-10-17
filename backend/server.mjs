@@ -3,7 +3,6 @@ import RegisterRoutesAdmin from "./admin/api/APIRegister.mjs";
 import RegisterRoutesUser from "./user/api/APIRegister.mjs";
 import Initializer from "./common/utils/initializer.mjs";
 import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
 import YAML from "yamljs";
 
 const app = Express();
@@ -20,7 +19,7 @@ app.use("/api/v1/user", RegisterRoutesUser);
 app.use("/api/v1/admin", RegisterRoutesAdmin);
 
 //Swagger
-const swaggerDocument = YAML.load("./docs/swagger.yml");
+const swaggerDocument = YAML.load("./docs/adminAuth.yml");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

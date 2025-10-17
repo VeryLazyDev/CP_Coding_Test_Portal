@@ -1,4 +1,4 @@
-import { prisma } from "./db.mjs";
+import { prisma } from "./database.mjs";
 
 export async function getAllRoles() {
     const roles = await prisma.role.findMany();
@@ -12,11 +12,5 @@ export async function getRoleById(id) {
 }
 export async function getRoleByName(roleName) {
     const role = await prisma.role.findUnique({ where: roleName });
-    return role;
-}
-export async function createNewRole(roleName) {
-    const role = await prisma.role.create({
-        data: { roleName },
-    });
     return role;
 }

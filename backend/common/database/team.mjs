@@ -1,4 +1,4 @@
-import { prisma } from "./db.mjs";
+import { prisma } from "./database.mjs";
 
 export async function getAllTeam() {
     const teams = await prisma.team.findMany();
@@ -13,22 +13,6 @@ export async function getTeamById(id) {
 export async function getTeamByName(teamName) {
     const team = await prisma.team.findUnique({
         where: { teamName },
-    });
-    return team;
-}
-export async function createNewTeam(teamName) {
-    const team = await prisma.team.create({
-        data: {
-            teamName,
-        },
-    });
-    return team;
-}
-
-export async function updateTeamName(id) {
-    const team = await prisma.team.update({
-        where: { id },
-        data: { teamName },
     });
     return team;
 }
