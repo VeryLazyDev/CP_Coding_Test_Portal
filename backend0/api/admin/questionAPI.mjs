@@ -3,13 +3,20 @@ import {
     createNewQuestion,
     getAllQuestionsByTeam,
 } from "../../database/questions.mjs";
+import {checkAuthorization} from "../../utils/authentication.mjs";
 
 const questionAPI = Express.Router();
 
 questionAPI.post("/", async (req, res) => {
     try {
-        const { question, options, image, type, teamId, correct_answer } =
-            req.body;
+        const { question, options, image, type, teamId, correct_answer } = req.body;
+        const { authorization } = req.headers;
+        //check token
+        const checkAuthBody = checkAuthorization(authorization);
+        if(!checkAuthBody.auth){
+            return res.status(checkAuthBody.status)
+                .json({error: checkAuthBody.error});
+        }
 
         const resultQues = createNewQuestion(
             question,
@@ -34,6 +41,14 @@ questionAPI.get("/all", async (req, res) => {
     try {
         const { teamId } = req.headers;
         const allQuestions = await getAllQuestionsByTeam(teamId);
+        const { authorization } = req.headers;
+        //checkt token
+        const checkAuthBody = checkAuthorization(authorization);
+        if(!checkAuthBody.auth){
+            return res.status(checkAuthBody.status)
+                .json({error: checkAuthBody.error});
+        }
+
         return res
             .status(200)
             .json({ message: "all questions by teamId", data: allQuestions });
