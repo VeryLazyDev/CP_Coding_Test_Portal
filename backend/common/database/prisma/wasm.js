@@ -98,7 +98,33 @@ exports.Prisma.QuestionsScalarFieldEnum = {
   options: 'options',
   image: 'image',
   type: 'type',
-  correct_answer: 'correct_answer'
+  teamId: 'teamId',
+  correct_answer: 'correct_answer',
+  created_datetime: 'created_datetime',
+  updated_datetime: 'updated_datetime'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  roleName: 'roleName'
+};
+
+exports.Prisma.TeamScalarFieldEnum = {
+  id: 'id',
+  teamName: 'teamName'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  name: 'name',
+  email: 'email',
+  roleId: 'roleId',
+  teamId: 'teamId',
+  created_datetime: 'created_datetime',
+  updated_datetime: 'updated_datetime',
+  active: 'active'
 };
 
 exports.Prisma.SortOrder = {
@@ -129,7 +155,10 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Questions: 'Questions'
+  Questions: 'Questions',
+  Role: 'Role',
+  Team: 'Team',
+  User: 'User'
 };
 /**
  * Create the Client
@@ -178,13 +207,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../common/database/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Questions {\n  id             Int     @id @default(autoincrement())\n  question       String\n  options        Json?\n  image          String?\n  type           String\n  correct_answer String\n}\n",
-  "inlineSchemaHash": "fff4fe91b277896df79a3e2f4acfa577d545ad374dc055337ffc71d84a003c6f",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../common/database/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Questions {\n  id               Int      @id @default(autoincrement())\n  question         String\n  options          Json?\n  image            String?\n  type             String\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  correct_answer   String\n  created_datetime DateTime\n  updated_datetime DateTime\n}\n\nmodel Role {\n  id       Int    @id @default(autoincrement())\n  roleName String\n  users    User[]\n}\n\nmodel Team {\n  id        Int         @id @default(autoincrement())\n  teamName  String\n  users     User[]\n  questions Questions[]\n}\n\nmodel User {\n  id               Int      @id @default(autoincrement())\n  username         String   @unique\n  password         String   @db.Text\n  name             String\n  email            String?\n  roleId           Int\n  role             Role     @relation(fields: [roleId], references: [id])\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  created_datetime DateTime @default(now())\n  updated_datetime DateTime @updatedAt\n  active           Boolean  @default(true)\n}\n",
+  "inlineSchemaHash": "d7dac657bdf9fd83f24aebaef423bdcc0a435046e88c59dc2fae05c703f2537d",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Questions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"question\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"options\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"correct_answer\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Questions\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"question\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"options\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"image\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"QuestionsToTeam\"},{\"name\":\"correct_answer\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_datetime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_datetime\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Role\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"roleName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RoleToUser\"}],\"dbName\":null},\"Team\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"teamName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"TeamToUser\"},{\"name\":\"questions\",\"kind\":\"object\",\"type\":\"Questions\",\"relationName\":\"QuestionsToTeam\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"username\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"roleId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"role\",\"kind\":\"object\",\"type\":\"Role\",\"relationName\":\"RoleToUser\"},{\"name\":\"teamId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"team\",\"kind\":\"object\",\"type\":\"Team\",\"relationName\":\"TeamToUser\"},{\"name\":\"created_datetime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_datetime\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

@@ -8,11 +8,14 @@ export function generateSecret(size = 32) {
     SECRET_KEY = randomBytes.toString("base64");
 }
 
-export function createToken(userid, username, team) {
+export function createToken(userid, username, name, email, team, role) {
     const payload = {
         userid,
         username,
+        name,
+        email,
         team,
+        role,
     };
     const options = {
         expiresIn: "1h",
@@ -25,10 +28,10 @@ export function createToken(userid, username, team) {
 export function verifyToken(token) {
     try {
         const decode = jwt.verify(token, SECRET_KEY);
-        return true;
+        return decode;
     } catch (e) {
         console.error("Invalid Token", e.message);
-        return false;
+        return null;
     }
 }
 

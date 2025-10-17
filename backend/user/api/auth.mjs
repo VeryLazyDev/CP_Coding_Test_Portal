@@ -12,7 +12,7 @@ const authApi = Express.Router();
  *     summary: User login
  *     description: Authenticates the user and returns a JWT token if credentials are valid.
  *     tags:
- *       - Auth
+ *       - User Auth
  *     requestBody:
  *       required: true
  *       content:
