@@ -8,6 +8,7 @@ import {
 import { createNewUser } from "../database/user.mjs";
 import { getTeamById } from "../../common/database/team.mjs";
 import { getRoleById } from "../../common/database/role.mjs";
+import { checkAuthorization } from "../utils/checkAuthAdmin.mjs";
 const authApi = Express.Router();
 
 authApi.post("/login", async (req, res) => {
@@ -59,7 +60,7 @@ authApi.post("/register", async (req, res) => {
     try {
         const { name, email, username, password, teamId, roleId } = req.body;
         const { authorization } = req.headers;
-        //check required data
+        //check Required field
         if (
             username == "" ||
             name == "" ||
