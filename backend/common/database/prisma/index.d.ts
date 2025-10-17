@@ -1395,7 +1395,7 @@ export namespace Prisma {
   export type QuestionsGroupByOutputType = {
     id: number
     question: string
-    options: JsonValue | null
+    options: JsonValue
     image: string | null
     type: string
     teamId: number
@@ -1493,7 +1493,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       question: string
-      options: Prisma.JsonValue | null
+      options: Prisma.JsonValue
       image: string | null
       type: string
       teamId: number
@@ -5747,12 +5747,11 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const NullableJsonNullValueInput: {
-    DbNull: typeof DbNull,
+  export const JsonNullValueInput: {
     JsonNull: typeof JsonNull
   };
 
-  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -5871,7 +5870,7 @@ export namespace Prisma {
     NOT?: QuestionsWhereInput | QuestionsWhereInput[]
     id?: IntFilter<"Questions"> | number
     question?: StringFilter<"Questions"> | string
-    options?: JsonNullableFilter<"Questions">
+    options?: JsonFilter<"Questions">
     image?: StringNullableFilter<"Questions"> | string | null
     type?: StringFilter<"Questions"> | string
     teamId?: IntFilter<"Questions"> | number
@@ -5884,7 +5883,7 @@ export namespace Prisma {
   export type QuestionsOrderByWithRelationInput = {
     id?: SortOrder
     question?: SortOrder
-    options?: SortOrderInput | SortOrder
+    options?: SortOrder
     image?: SortOrderInput | SortOrder
     type?: SortOrder
     teamId?: SortOrder
@@ -5900,7 +5899,7 @@ export namespace Prisma {
     OR?: QuestionsWhereInput[]
     NOT?: QuestionsWhereInput | QuestionsWhereInput[]
     question?: StringFilter<"Questions"> | string
-    options?: JsonNullableFilter<"Questions">
+    options?: JsonFilter<"Questions">
     image?: StringNullableFilter<"Questions"> | string | null
     type?: StringFilter<"Questions"> | string
     teamId?: IntFilter<"Questions"> | number
@@ -5913,7 +5912,7 @@ export namespace Prisma {
   export type QuestionsOrderByWithAggregationInput = {
     id?: SortOrder
     question?: SortOrder
-    options?: SortOrderInput | SortOrder
+    options?: SortOrder
     image?: SortOrderInput | SortOrder
     type?: SortOrder
     teamId?: SortOrder
@@ -5933,7 +5932,7 @@ export namespace Prisma {
     NOT?: QuestionsScalarWhereWithAggregatesInput | QuestionsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Questions"> | number
     question?: StringWithAggregatesFilter<"Questions"> | string
-    options?: JsonNullableWithAggregatesFilter<"Questions">
+    options?: JsonWithAggregatesFilter<"Questions">
     image?: StringNullableWithAggregatesFilter<"Questions"> | string | null
     type?: StringWithAggregatesFilter<"Questions"> | string
     teamId?: IntWithAggregatesFilter<"Questions"> | number
@@ -6116,30 +6115,30 @@ export namespace Prisma {
 
   export type QuestionsCreateInput = {
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
     team: TeamCreateNestedOneWithoutQuestionsInput
   }
 
   export type QuestionsUncheckedCreateInput = {
     id?: number
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     teamId: number
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
   }
 
   export type QuestionsUpdateInput = {
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
@@ -6151,7 +6150,7 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     teamId?: IntFieldUpdateOperationsInput | number
@@ -6163,18 +6162,18 @@ export namespace Prisma {
   export type QuestionsCreateManyInput = {
     id?: number
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     teamId: number
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
   }
 
   export type QuestionsUpdateManyMutationInput = {
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
@@ -6185,7 +6184,7 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     teamId?: IntFieldUpdateOperationsInput | number
@@ -6381,14 +6380,14 @@ export namespace Prisma {
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
-  export type JsonNullableFilter<$PrismaModel = never> =
+  export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
+  export type JsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -6518,14 +6517,14 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -6540,9 +6539,9 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6997,25 +6996,14 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
+  export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
       >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -7047,6 +7035,17 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -7214,23 +7213,23 @@ export namespace Prisma {
 
   export type QuestionsCreateWithoutTeamInput = {
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
   }
 
   export type QuestionsUncheckedCreateWithoutTeamInput = {
     id?: number
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
   }
 
   export type QuestionsCreateOrConnectWithoutTeamInput = {
@@ -7281,7 +7280,7 @@ export namespace Prisma {
     NOT?: QuestionsScalarWhereInput | QuestionsScalarWhereInput[]
     id?: IntFilter<"Questions"> | number
     question?: StringFilter<"Questions"> | string
-    options?: JsonNullableFilter<"Questions">
+    options?: JsonFilter<"Questions">
     image?: StringNullableFilter<"Questions"> | string | null
     type?: StringFilter<"Questions"> | string
     teamId?: IntFilter<"Questions"> | number
@@ -7424,12 +7423,12 @@ export namespace Prisma {
   export type QuestionsCreateManyTeamInput = {
     id?: number
     question: string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options: JsonNullValueInput | InputJsonValue
     image?: string | null
     type: string
     correct_answer: string
-    created_datetime: Date | string
-    updated_datetime: Date | string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
   }
 
   export type UserUpdateWithoutTeamInput = {
@@ -7469,7 +7468,7 @@ export namespace Prisma {
 
   export type QuestionsUpdateWithoutTeamInput = {
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
@@ -7480,7 +7479,7 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateWithoutTeamInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string
@@ -7491,7 +7490,7 @@ export namespace Prisma {
   export type QuestionsUncheckedUpdateManyWithoutTeamInput = {
     id?: IntFieldUpdateOperationsInput | number
     question?: StringFieldUpdateOperationsInput | string
-    options?: NullableJsonNullValueInput | InputJsonValue
+    options?: JsonNullValueInput | InputJsonValue
     image?: NullableStringFieldUpdateOperationsInput | string | null
     type?: StringFieldUpdateOperationsInput | string
     correct_answer?: StringFieldUpdateOperationsInput | string

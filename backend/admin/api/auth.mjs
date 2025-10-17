@@ -85,7 +85,7 @@ authApi.post("/register", async (req, res) => {
         //check the bearer scheme
         const [scheme, token] = parts;
         if (!/^Bearer$/i.test(scheme)) {
-            return res.status(400).json({ error: "Expected Bearer scheme" });
+            return res.status(400).json({ error: "UnExpected Bearer scheme" });
         }
         //check token existence
         if (!token || token.trim() === "") {

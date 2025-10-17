@@ -132,8 +132,7 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.NullableJsonNullValueInput = {
-  DbNull: Prisma.DbNull,
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -171,7 +170,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/phyo/Programming/CP_Coding_Test_Portal/backend/common/database/prisma",
+      "value": "C:\\Orion\\Projects\\CP_Coding_Test_Portal\\backend\\common\\database\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -180,12 +179,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/phyo/Programming/CP_Coding_Test_Portal/backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Orion\\Projects\\CP_Coding_Test_Portal\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -207,8 +206,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../common/database/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Questions {\n  id               Int      @id @default(autoincrement())\n  question         String\n  options          Json?\n  image            String?\n  type             String\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  correct_answer   String\n  created_datetime DateTime\n  updated_datetime DateTime\n}\n\nmodel Role {\n  id       Int    @id @default(autoincrement())\n  roleName String\n  users    User[]\n}\n\nmodel Team {\n  id        Int         @id @default(autoincrement())\n  teamName  String\n  users     User[]\n  questions Questions[]\n}\n\nmodel User {\n  id               Int      @id @default(autoincrement())\n  username         String   @unique\n  password         String   @db.Text\n  name             String\n  email            String?\n  roleId           Int\n  role             Role     @relation(fields: [roleId], references: [id])\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  created_datetime DateTime @default(now())\n  updated_datetime DateTime @updatedAt\n  active           Boolean  @default(true)\n}\n",
-  "inlineSchemaHash": "d7dac657bdf9fd83f24aebaef423bdcc0a435046e88c59dc2fae05c703f2537d",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../common/database/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Questions {\n  id               Int      @id @default(autoincrement())\n  question         String\n  options          Json\n  image            String?\n  type             String\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  correct_answer   String\n  created_datetime DateTime @default(now())\n  updated_datetime DateTime @updatedAt\n}\n\nmodel Role {\n  id       Int    @id @default(autoincrement())\n  roleName String\n  users    User[]\n}\n\nmodel Team {\n  id        Int         @id @default(autoincrement())\n  teamName  String\n  users     User[]\n  questions Questions[]\n}\n\nmodel User {\n  id               Int      @id @default(autoincrement())\n  username         String   @unique\n  password         String   @db.Text\n  name             String\n  email            String?\n  roleId           Int\n  role             Role     @relation(fields: [roleId], references: [id])\n  teamId           Int\n  team             Team     @relation(fields: [teamId], references: [id])\n  created_datetime DateTime @default(now())\n  updated_datetime DateTime @updatedAt\n  active           Boolean  @default(true)\n}\n",
+  "inlineSchemaHash": "c77598aa6579bd0b442ffd8e6b97686d471e9a40fb476acf4825e8a5a9793e84",
   "copyEngine": true
 }
 config.dirname = '/'

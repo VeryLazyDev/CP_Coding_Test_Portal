@@ -17,14 +17,14 @@ datasource db {
 model Questions {
   id               Int      @id @default(autoincrement())
   question         String
-  options          Json?
+  options          Json
   image            String?
   type             String
   teamId           Int
   team             Team     @relation(fields: [teamId], references: [id])
   correct_answer   String
-  created_datetime DateTime
-  updated_datetime DateTime
+  created_datetime DateTime @default(now())
+  updated_datetime DateTime @updatedAt
 }
 
 model Role {
