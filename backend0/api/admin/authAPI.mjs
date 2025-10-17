@@ -3,10 +3,9 @@ import {
     createToken,
     hashPassword,
     verifyPassword,
-    verifyToken,
     checkAuthorization,
 } from "../../utils/authentication.mjs";
-import { createNewUser } from "../../database/user.mjs";
+import { createNewUser, getUserByUsername } from "../../database/user.mjs";
 import { getTeamById } from "../../database/team.mjs";
 import { getRoleById } from "../../database/role.mjs";
 const authApi = Express.Router();
@@ -72,7 +71,7 @@ authApi.post("/register", async (req, res) => {
         }
         //Check authorization
         const checkAuthBody = checkAuthorization(authorization);
-        if (checkAuthBody.auth) {
+        if (!checkAuthBody.auth) {
             return res
                 .status(checkAuthBody.status)
                 .json({ error: checkAuthBody.error });
