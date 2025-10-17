@@ -83,6 +83,7 @@ This platform is ideal for streamline  their hiring process by evaluating techni
 ```bash
     cd backend
 ```
+clear
 ```bash
     npm run dev
 ```
