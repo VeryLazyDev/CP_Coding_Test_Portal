@@ -5,10 +5,7 @@ import {
     verifyPassword,
     verifyToken,
 } from "../../common/utils/authManager.mjs";
-import {
-    createNewUser,
-    getUserByUsername,
-} from "../../common/database/user.mjs";
+import { createNewUser } from "../database/user.mjs";
 import { getTeamById } from "../../common/database/team.mjs";
 import { getRoleById } from "../../common/database/role.mjs";
 const authApi = Express.Router();
