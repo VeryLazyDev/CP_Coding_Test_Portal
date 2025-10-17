@@ -171,7 +171,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/phyo/Programming/CP_Coding_Test_Portal/backend/common/database/prisma",
+      "value": "C:\\Users\\ict-appimplement08\\Desktop\\CP_Coding_Test_Portal\\backend\\common\\database\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -180,12 +180,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/phyo/Programming/CP_Coding_Test_Portal/backend/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\ict-appimplement08\\Desktop\\CP_Coding_Test_Portal\\backend\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -199,6 +199,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
