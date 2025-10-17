@@ -1,4 +1,4 @@
-import { prisma } from "./db.mjs";
+import { prisma } from "./database.mjs";
 
 export async function getAllQuestions() {
     const questions = await prisma.questions.findMany();
@@ -11,21 +11,4 @@ export async function getAllQuestionsByTeam(teamId) {
         },
     });
     return questions;
-}
-export async function createNewQuestion(
-    question,
-    options,
-    image,
-    type,
-    correct_answer,
-    teamId,
-) {
-    const question = await prisma.questions.create({
-        question,
-        options,
-        image,
-        type,
-        correct_answer,
-        teamId,
-    });
 }
