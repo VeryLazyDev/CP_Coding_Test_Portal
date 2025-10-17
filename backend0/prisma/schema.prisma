@@ -15,16 +15,17 @@ datasource db {
 }
 
 model Questions {
-  id               Int      @id @default(autoincrement())
+  id               Int          @id @default(autoincrement())
   question         String
   options          Json
   image            String?
-  type             String
+  typeId           Int
+  type             QuestionType @relation(fields: [typeId], references: [id])
   teamId           Int
-  team             Team     @relation(fields: [teamId], references: [id])
+  team             Team         @relation(fields: [teamId], references: [id])
   correct_answer   String
-  created_datetime DateTime @default(now())
-  updated_datetime DateTime @updatedAt
+  created_datetime DateTime     @default(now())
+  updated_datetime DateTime     @updatedAt
 }
 
 model Role {
@@ -53,4 +54,19 @@ model User {
   created_datetime DateTime @default(now())
   updated_datetime DateTime @updatedAt
   active           Boolean  @default(true)
+}
+
+model QuestionType {
+  id        Int         @id @default(autoincrement())
+  name      String
+  Questions Questions[]
+}
+
+model UserAnswers {
+  id               Int      @id @default(autoincrement())
+  userId           Int
+  questionId       Int
+  answer           String
+  created_datetime DateTime @default(now())
+  updated_datetime DateTime @updatedAt
 }
