@@ -5,6 +5,8 @@ import Initializer from "./common/utils/initializer.mjs";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import YAML from "yamljs";
+import cors from "cors"
+
 
 const app = Express();
 const port = 8080;
@@ -14,6 +16,7 @@ Initializer();
 
 //Use as middleware for decoding json
 app.use(Express.json());
+app.use(cors());
 
 //This is all the routes are define
 app.use("/api/v1/user", RegisterRoutesUser);

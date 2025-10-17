@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import TextInput from "../../../components/common/TextInput";
 import PasswordInput from "../../../components/common/PasswordInput";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
+import { login } from "../../../services/authService";
+import { useNavigate } from "react-router";
 
 const LoginForm = () => {
+
+  const navigate=useNavigate()
   const [isLoading, setLoading] = useState(false);
 
   const {
@@ -14,16 +18,26 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setLoading(true);
+    try {
+      console.log("Log in.....");
 
-    setTimeout(() => {
-      console.log("User Login Form Data:", data);
+      const response = await login(data);
+console.log("RESPONSE",response);
 
-      toast.success("SUCCESS");
-       setLoading(false);
-    }, 3000);
-    
+
+
+      if (response.status===200) {
+      
+        localStorage.setItem("token", response.data.token);
+        navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,7 +61,8 @@ const LoginForm = () => {
         error={errors.username && "Password is required"}
       />
 
-      <button disabled={isLoading}
+      <button
+        disabled={isLoading}
         type="submit"
         className="w-full cursor-pointer bg-blue-500 rounded-md px-2 py-2 text-white text-xl font-medium"
       >
