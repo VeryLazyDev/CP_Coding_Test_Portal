@@ -46,44 +46,52 @@ export async function verifyPassword(password, hashedPassword) {
 }
 
 export function checkAuthorization(authorization) {
-    //Check authorization header
-    if (!authorization) {
-        return {
-            auth: false,
-            status: 401,
-            error: "Authorization header missing",
-        };
+    try {
+        //Check authorization header
+        if (!authorization) {
+            return {
+                auth: false,
+                status: 401,
+                error: "Authorization header missing",
+            };
+        }
+        //check authorization format
+        const parts = authorization.split(" ");
+        if (parts.length !== 2) {
+            return {
+                auth: false,
+                status: 400,
+                error: "Invalid authorization header format",
+            };
+        }
+        //check the bearer scheme
+        const [scheme, token] = parts;
+        if (!/^Bearer$/i.test(scheme)) {
+            return {
+                auth: false,
+                status: 400,
+                error: "UnExpected Bearer scheme",
+            };
+        }
+        //check token existence
+        if (!token || token.trim() === "") {
+            return { auth: false, status: 400, error: "Token is empty" };
+        }
+        //verify token
+        const verify = verifyToken(token);
+        if (!verify) {
+            return { auth: false, status: 401, error: "Unauthorize Token" };
+        }
+        //check role
+        if (verify.role !== "Admin") {
+            return {
+                auth: false,
+                status: 401,
+                error: "Only admin can access this feature",
+            };
+        }
+        return { auth: true, status: 200 };
+    } catch (e) {
+        return { auth: false, status: 500, error: "Internal Server Error" };
     }
-    //check authorization format
-    const parts = authorization.split(" ");
-    if (parts.length !== 2) {
-        return {
-            auth: false,
-            status: 400,
-            error: "Invalid authorization header format",
-        };
-    }
-    //check the bearer scheme
-    const [scheme, token] = parts;
-    if (!/^Bearer$/i.test(scheme)) {
-        return { auth: false, status: 400, error: "UnExpected Bearer scheme" };
-    }
-    //check token existence
-    if (!token || token.trim() === "") {
-        return { auth: false, status: 400, error: "Token is empty" };
-    }
-    //verify token
-    const verify = verifyToken(token);
-    if (!verify) {
-        return { auth: false, status: 401, error: "Unauthorize Token" };
-    }
-    //check role
-    if (verify.role !== "Admin") {
-        return {
-            auth: false,
-            status: 401,
-            error: "Only admin can access this feature",
-        };
-    }
-    return { auth: true, status: 200 };
 }
