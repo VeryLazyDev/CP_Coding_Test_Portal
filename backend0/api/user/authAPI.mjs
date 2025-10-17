@@ -3,7 +3,7 @@ import {
     createToken,
     hashPassword,
     verifyPassword,
-} from "../../common/utils/authManager.mjs";
+} from "../../utils/authentication.mjs";
 const authApi = Express.Router();
 
 authApi.post("/login", async (req, res) => {
