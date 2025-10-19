@@ -1,0 +1,95 @@
+
+paths:
+  /api/v1/user/answer/submit:
+    post:
+      summary: Submit user answers
+      description: >
+        Accepts an array of answers from an authenticated user, validates each entry,
+        and saves them to the database. Each answer must contain a valid `questionId` and non-empty `answer`.
+      tags:
+        - User Answers
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - answers
+              properties:
+                answers:
+                  type: array
+                  description: Array of user answers to be submitted.
+                  items:
+                    type: object
+                    required:
+                      - questionId
+                      - answer
+                    properties:
+                      questionId:
+                        type: integer
+                        example: 5
+                      answer:
+                        type: string
+                        example: "Option B"
+      responses:
+        "200":
+          description: Successfully submitted answers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Successfully Submit
+                  count:
+                    type: integer
+                    example: 3
+        "400":
+          description: Invalid or missing data in request body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                missingData:
+                  summary: Missing required data
+                  value:
+                    error: Missing Required Data In Body
+                invalidData:
+                  summary: Invalid data fields
+                  value:
+                    error: Invalid Data Contains
+        "401":
+          description: Unauthorized - Invalid or missing authorization header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid authorization token
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error : database connection failed
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
