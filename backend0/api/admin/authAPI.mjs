@@ -77,12 +77,12 @@ authApi.post("/register", async (req, res) => {
             return res.status(401).json({ error: "Missing required fields" });
         }
         //Check authorization
-        // const checkAuthBody = checkAuthorization(authorization);
-        // if (!checkAuthBody.auth) {
-        //     return res
-        //         .status(checkAuthBody.status)
-        //         .json({ error: checkAuthBody.error });
-        // }
+        const checkAuthBody = checkAuthorization(authorization);
+        if (!checkAuthBody.auth) {
+            return res
+                .status(checkAuthBody.status)
+                .json({ error: checkAuthBody.error });
+        }
 
         //hash the password of new user
         const hashedPassword = await hashPassword(password);

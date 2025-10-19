@@ -1,0 +1,68 @@
+paths:
+    /api/v1/user/auth/login:
+        post:
+            summary: User login
+            description: >
+                Authenticates a user with `username` and `password`.
+                Returns a JWT token and basic user info on success.
+            tags:
+                - Authentication
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            required:
+                                - username
+                                - password
+                            properties:
+                                username:
+                                    type: string
+                                    example: "Bruce"
+                                password:
+                                    type: string
+                                    example: "iambatman"
+            responses:
+                "200":
+                    description: Successful login
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+                                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                    name:
+                                        type: string
+                                        example: "Bruce Wayne"
+                                    username:
+                                        type: string
+                                        example: "Bruce"
+                                    email:
+                                        type: string
+                                        example: "bruce@example.com"
+                                    team:
+                                        type: string
+                                        example: "AMS"
+                "401":
+                    description: Invalid username or password
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: Incorrect username or password
+                "500":
+                    description: Internal server error
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "Internal Server Error : database connection failed"

@@ -1311,6 +1311,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type QuestionsCountOutputType
+   */
+
+  export type QuestionsCountOutputType = {
+    UserAnswers: number
+  }
+
+  export type QuestionsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    UserAnswers?: boolean | QuestionsCountOutputTypeCountUserAnswersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QuestionsCountOutputType without action
+   */
+  export type QuestionsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuestionsCountOutputType
+     */
+    select?: QuestionsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QuestionsCountOutputType without action
+   */
+  export type QuestionsCountOutputTypeCountUserAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserAnswersWhereInput
+  }
+
+
+  /**
    * Count Type RoleCountOutputType
    */
 
@@ -1378,6 +1409,37 @@ export namespace Prisma {
    */
   export type TeamCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestionsWhereInput
+  }
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    userAnswers: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    userAnswers?: boolean | UserCountOutputTypeCountUserAnswersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserAnswersWhereInput
   }
 
 
@@ -1652,6 +1714,8 @@ export namespace Prisma {
     updated_datetime?: boolean
     type?: boolean | QuestionTypeDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
+    UserAnswers?: boolean | Questions$UserAnswersArgs<ExtArgs>
+    _count?: boolean | QuestionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["questions"]>
 
   export type QuestionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1698,6 +1762,8 @@ export namespace Prisma {
   export type QuestionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     type?: boolean | QuestionTypeDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
+    UserAnswers?: boolean | Questions$UserAnswersArgs<ExtArgs>
+    _count?: boolean | QuestionsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type QuestionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     type?: boolean | QuestionTypeDefaultArgs<ExtArgs>
@@ -1713,6 +1779,7 @@ export namespace Prisma {
     objects: {
       type: Prisma.$QuestionTypePayload<ExtArgs>
       team: Prisma.$TeamPayload<ExtArgs>
+      UserAnswers: Prisma.$UserAnswersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2120,6 +2187,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     type<T extends QuestionTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionTypeDefaultArgs<ExtArgs>>): Prisma__QuestionTypeClient<$Result.GetResult<Prisma.$QuestionTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    UserAnswers<T extends Questions$UserAnswersArgs<ExtArgs> = {}>(args?: Subset<T, Questions$UserAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAnswersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2551,6 +2619,30 @@ export namespace Prisma {
      * Limit how many Questions to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Questions.UserAnswers
+   */
+  export type Questions$UserAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAnswers
+     */
+    select?: UserAnswersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserAnswers
+     */
+    omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    where?: UserAnswersWhereInput
+    orderBy?: UserAnswersOrderByWithRelationInput | UserAnswersOrderByWithRelationInput[]
+    cursor?: UserAnswersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserAnswersScalarFieldEnum | UserAnswersScalarFieldEnum[]
   }
 
   /**
@@ -4978,6 +5070,8 @@ export namespace Prisma {
     active?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
+    userAnswers?: boolean | User$userAnswersArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5027,6 +5121,8 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | RoleDefaultArgs<ExtArgs>
     team?: boolean | TeamDefaultArgs<ExtArgs>
+    userAnswers?: boolean | User$userAnswersArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | RoleDefaultArgs<ExtArgs>
@@ -5042,6 +5138,7 @@ export namespace Prisma {
     objects: {
       role: Prisma.$RolePayload<ExtArgs>
       team: Prisma.$TeamPayload<ExtArgs>
+      userAnswers: Prisma.$UserAnswersPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5450,6 +5547,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     team<T extends TeamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeamDefaultArgs<ExtArgs>>): Prisma__TeamClient<$Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userAnswers<T extends User$userAnswersArgs<ExtArgs> = {}>(args?: Subset<T, User$userAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserAnswersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5882,6 +5980,30 @@ export namespace Prisma {
      * Limit how many Users to delete.
      */
     limit?: number
+  }
+
+  /**
+   * User.userAnswers
+   */
+  export type User$userAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserAnswers
+     */
+    select?: UserAnswersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserAnswers
+     */
+    omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    where?: UserAnswersWhereInput
+    orderBy?: UserAnswersOrderByWithRelationInput | UserAnswersOrderByWithRelationInput[]
+    cursor?: UserAnswersWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserAnswersScalarFieldEnum | UserAnswersScalarFieldEnum[]
   }
 
   /**
@@ -7182,6 +7304,8 @@ export namespace Prisma {
     answer?: boolean
     created_datetime?: boolean
     updated_datetime?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
   export type UserAnswersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7191,6 +7315,8 @@ export namespace Prisma {
     answer?: boolean
     created_datetime?: boolean
     updated_datetime?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
   export type UserAnswersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7200,6 +7326,8 @@ export namespace Prisma {
     answer?: boolean
     created_datetime?: boolean
     updated_datetime?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userAnswers"]>
 
   export type UserAnswersSelectScalar = {
@@ -7212,10 +7340,25 @@ export namespace Prisma {
   }
 
   export type UserAnswersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "questionId" | "answer" | "created_datetime" | "updated_datetime", ExtArgs["result"]["userAnswers"]>
+  export type UserAnswersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
+  }
+  export type UserAnswersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
+  }
+  export type UserAnswersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    question?: boolean | QuestionsDefaultArgs<ExtArgs>
+  }
 
   export type $UserAnswersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserAnswers"
-    objects: {}
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      question: Prisma.$QuestionsPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
@@ -7617,6 +7760,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserAnswersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    question<T extends QuestionsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionsDefaultArgs<ExtArgs>>): Prisma__QuestionsClient<$Result.GetResult<Prisma.$QuestionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7669,6 +7814,10 @@ export namespace Prisma {
      */
     omit?: UserAnswersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    /**
      * Filter, which UserAnswers to fetch.
      */
     where: UserAnswersWhereUniqueInput
@@ -7687,6 +7836,10 @@ export namespace Prisma {
      */
     omit?: UserAnswersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    /**
      * Filter, which UserAnswers to fetch.
      */
     where: UserAnswersWhereUniqueInput
@@ -7704,6 +7857,10 @@ export namespace Prisma {
      * Omit specific fields from the UserAnswers
      */
     omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
     /**
      * Filter, which UserAnswers to fetch.
      */
@@ -7753,6 +7910,10 @@ export namespace Prisma {
      */
     omit?: UserAnswersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    /**
      * Filter, which UserAnswers to fetch.
      */
     where?: UserAnswersWhereInput
@@ -7801,6 +7962,10 @@ export namespace Prisma {
      */
     omit?: UserAnswersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    /**
      * Filter, which UserAnswers to fetch.
      */
     where?: UserAnswersWhereInput
@@ -7844,6 +8009,10 @@ export namespace Prisma {
      */
     omit?: UserAnswersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
+    /**
      * The data needed to create a UserAnswers.
      */
     data: XOR<UserAnswersCreateInput, UserAnswersUncheckedCreateInput>
@@ -7877,6 +8046,10 @@ export namespace Prisma {
      */
     data: UserAnswersCreateManyInput | UserAnswersCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7891,6 +8064,10 @@ export namespace Prisma {
      * Omit specific fields from the UserAnswers
      */
     omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
     /**
      * The data needed to update a UserAnswers.
      */
@@ -7943,6 +8120,10 @@ export namespace Prisma {
      * Limit how many UserAnswers to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7957,6 +8138,10 @@ export namespace Prisma {
      * Omit specific fields from the UserAnswers
      */
     omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
     /**
      * The filter to search for the UserAnswers to update in case it exists.
      */
@@ -7983,6 +8168,10 @@ export namespace Prisma {
      * Omit specific fields from the UserAnswers
      */
     omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
     /**
      * Filter which UserAnswers to delete.
      */
@@ -8015,6 +8204,10 @@ export namespace Prisma {
      * Omit specific fields from the UserAnswers
      */
     omit?: UserAnswersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserAnswersInclude<ExtArgs> | null
   }
 
 
@@ -8239,6 +8432,7 @@ export namespace Prisma {
     updated_datetime?: DateTimeFilter<"Questions"> | Date | string
     type?: XOR<QuestionTypeScalarRelationFilter, QuestionTypeWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+    UserAnswers?: UserAnswersListRelationFilter
   }
 
   export type QuestionsOrderByWithRelationInput = {
@@ -8253,6 +8447,7 @@ export namespace Prisma {
     updated_datetime?: SortOrder
     type?: QuestionTypeOrderByWithRelationInput
     team?: TeamOrderByWithRelationInput
+    UserAnswers?: UserAnswersOrderByRelationAggregateInput
   }
 
   export type QuestionsWhereUniqueInput = Prisma.AtLeast<{
@@ -8270,6 +8465,7 @@ export namespace Prisma {
     updated_datetime?: DateTimeFilter<"Questions"> | Date | string
     type?: XOR<QuestionTypeScalarRelationFilter, QuestionTypeWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+    UserAnswers?: UserAnswersListRelationFilter
   }, "id">
 
   export type QuestionsOrderByWithAggregationInput = {
@@ -8407,6 +8603,7 @@ export namespace Prisma {
     active?: BoolFilter<"User"> | boolean
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+    userAnswers?: UserAnswersListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8422,6 +8619,7 @@ export namespace Prisma {
     active?: SortOrder
     role?: RoleOrderByWithRelationInput
     team?: TeamOrderByWithRelationInput
+    userAnswers?: UserAnswersOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8440,6 +8638,7 @@ export namespace Prisma {
     active?: BoolFilter<"User"> | boolean
     role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
+    userAnswers?: UserAnswersListRelationFilter
   }, "id" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -8528,6 +8727,8 @@ export namespace Prisma {
     answer?: StringFilter<"UserAnswers"> | string
     created_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
     updated_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    question?: XOR<QuestionsScalarRelationFilter, QuestionsWhereInput>
   }
 
   export type UserAnswersOrderByWithRelationInput = {
@@ -8537,6 +8738,8 @@ export namespace Prisma {
     answer?: SortOrder
     created_datetime?: SortOrder
     updated_datetime?: SortOrder
+    user?: UserOrderByWithRelationInput
+    question?: QuestionsOrderByWithRelationInput
   }
 
   export type UserAnswersWhereUniqueInput = Prisma.AtLeast<{
@@ -8549,6 +8752,8 @@ export namespace Prisma {
     answer?: StringFilter<"UserAnswers"> | string
     created_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
     updated_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    question?: XOR<QuestionsScalarRelationFilter, QuestionsWhereInput>
   }, "id">
 
   export type UserAnswersOrderByWithAggregationInput = {
@@ -8586,6 +8791,7 @@ export namespace Prisma {
     updated_datetime?: Date | string
     type: QuestionTypeCreateNestedOneWithoutQuestionsInput
     team: TeamCreateNestedOneWithoutQuestionsInput
+    UserAnswers?: UserAnswersCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsUncheckedCreateInput = {
@@ -8598,6 +8804,7 @@ export namespace Prisma {
     correct_answer: string
     created_datetime?: Date | string
     updated_datetime?: Date | string
+    UserAnswers?: UserAnswersUncheckedCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsUpdateInput = {
@@ -8609,6 +8816,7 @@ export namespace Prisma {
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: QuestionTypeUpdateOneRequiredWithoutQuestionsNestedInput
     team?: TeamUpdateOneRequiredWithoutQuestionsNestedInput
+    UserAnswers?: UserAnswersUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsUncheckedUpdateInput = {
@@ -8621,6 +8829,7 @@ export namespace Prisma {
     correct_answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserAnswers?: UserAnswersUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsCreateManyInput = {
@@ -8742,6 +8951,7 @@ export namespace Prisma {
     active?: boolean
     role: RoleCreateNestedOneWithoutUsersInput
     team: TeamCreateNestedOneWithoutUsersInput
+    userAnswers?: UserAnswersCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8755,6 +8965,7 @@ export namespace Prisma {
     created_datetime?: Date | string
     updated_datetime?: Date | string
     active?: boolean
+    userAnswers?: UserAnswersUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8767,6 +8978,7 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
     team?: TeamUpdateOneRequiredWithoutUsersNestedInput
+    userAnswers?: UserAnswersUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8780,6 +8992,7 @@ export namespace Prisma {
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    userAnswers?: UserAnswersUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8855,11 +9068,11 @@ export namespace Prisma {
   }
 
   export type UserAnswersCreateInput = {
-    userId: number
-    questionId: number
     answer: string
     created_datetime?: Date | string
     updated_datetime?: Date | string
+    user: UserCreateNestedOneWithoutUserAnswersInput
+    question: QuestionsCreateNestedOneWithoutUserAnswersInput
   }
 
   export type UserAnswersUncheckedCreateInput = {
@@ -8872,11 +9085,11 @@ export namespace Prisma {
   }
 
   export type UserAnswersUpdateInput = {
-    userId?: IntFieldUpdateOperationsInput | number
-    questionId?: IntFieldUpdateOperationsInput | number
     answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserAnswersNestedInput
+    question?: QuestionsUpdateOneRequiredWithoutUserAnswersNestedInput
   }
 
   export type UserAnswersUncheckedUpdateInput = {
@@ -8898,8 +9111,6 @@ export namespace Prisma {
   }
 
   export type UserAnswersUpdateManyMutationInput = {
-    userId?: IntFieldUpdateOperationsInput | number
-    questionId?: IntFieldUpdateOperationsInput | number
     answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8999,9 +9210,19 @@ export namespace Prisma {
     isNot?: TeamWhereInput
   }
 
+  export type UserAnswersListRelationFilter = {
+    every?: UserAnswersWhereInput
+    some?: UserAnswersWhereInput
+    none?: UserAnswersWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type UserAnswersOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type QuestionsCountOrderByAggregateInput = {
@@ -9300,6 +9521,16 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type QuestionsScalarRelationFilter = {
+    is?: QuestionsWhereInput
+    isNot?: QuestionsWhereInput
+  }
+
   export type UserAnswersCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -9351,6 +9582,20 @@ export namespace Prisma {
     connect?: TeamWhereUniqueInput
   }
 
+  export type UserAnswersCreateNestedManyWithoutQuestionInput = {
+    create?: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput> | UserAnswersCreateWithoutQuestionInput[] | UserAnswersUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutQuestionInput | UserAnswersCreateOrConnectWithoutQuestionInput[]
+    createMany?: UserAnswersCreateManyQuestionInputEnvelope
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+  }
+
+  export type UserAnswersUncheckedCreateNestedManyWithoutQuestionInput = {
+    create?: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput> | UserAnswersCreateWithoutQuestionInput[] | UserAnswersUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutQuestionInput | UserAnswersCreateOrConnectWithoutQuestionInput[]
+    createMany?: UserAnswersCreateManyQuestionInputEnvelope
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -9379,12 +9624,40 @@ export namespace Prisma {
     update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutQuestionsInput, TeamUpdateWithoutQuestionsInput>, TeamUncheckedUpdateWithoutQuestionsInput>
   }
 
+  export type UserAnswersUpdateManyWithoutQuestionNestedInput = {
+    create?: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput> | UserAnswersCreateWithoutQuestionInput[] | UserAnswersUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutQuestionInput | UserAnswersCreateOrConnectWithoutQuestionInput[]
+    upsert?: UserAnswersUpsertWithWhereUniqueWithoutQuestionInput | UserAnswersUpsertWithWhereUniqueWithoutQuestionInput[]
+    createMany?: UserAnswersCreateManyQuestionInputEnvelope
+    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    update?: UserAnswersUpdateWithWhereUniqueWithoutQuestionInput | UserAnswersUpdateWithWhereUniqueWithoutQuestionInput[]
+    updateMany?: UserAnswersUpdateManyWithWhereWithoutQuestionInput | UserAnswersUpdateManyWithWhereWithoutQuestionInput[]
+    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserAnswersUncheckedUpdateManyWithoutQuestionNestedInput = {
+    create?: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput> | UserAnswersCreateWithoutQuestionInput[] | UserAnswersUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutQuestionInput | UserAnswersCreateOrConnectWithoutQuestionInput[]
+    upsert?: UserAnswersUpsertWithWhereUniqueWithoutQuestionInput | UserAnswersUpsertWithWhereUniqueWithoutQuestionInput[]
+    createMany?: UserAnswersCreateManyQuestionInputEnvelope
+    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    update?: UserAnswersUpdateWithWhereUniqueWithoutQuestionInput | UserAnswersUpdateWithWhereUniqueWithoutQuestionInput[]
+    updateMany?: UserAnswersUpdateManyWithWhereWithoutQuestionInput | UserAnswersUpdateManyWithWhereWithoutQuestionInput[]
+    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
   }
 
   export type UserCreateNestedManyWithoutRoleInput = {
@@ -9525,6 +9798,20 @@ export namespace Prisma {
     connect?: TeamWhereUniqueInput
   }
 
+  export type UserAnswersCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput> | UserAnswersCreateWithoutUserInput[] | UserAnswersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutUserInput | UserAnswersCreateOrConnectWithoutUserInput[]
+    createMany?: UserAnswersCreateManyUserInputEnvelope
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+  }
+
+  export type UserAnswersUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput> | UserAnswersCreateWithoutUserInput[] | UserAnswersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutUserInput | UserAnswersCreateOrConnectWithoutUserInput[]
+    createMany?: UserAnswersCreateManyUserInputEnvelope
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -9543,6 +9830,34 @@ export namespace Prisma {
     upsert?: TeamUpsertWithoutUsersInput
     connect?: TeamWhereUniqueInput
     update?: XOR<XOR<TeamUpdateToOneWithWhereWithoutUsersInput, TeamUpdateWithoutUsersInput>, TeamUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type UserAnswersUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput> | UserAnswersCreateWithoutUserInput[] | UserAnswersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutUserInput | UserAnswersCreateOrConnectWithoutUserInput[]
+    upsert?: UserAnswersUpsertWithWhereUniqueWithoutUserInput | UserAnswersUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserAnswersCreateManyUserInputEnvelope
+    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    update?: UserAnswersUpdateWithWhereUniqueWithoutUserInput | UserAnswersUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserAnswersUpdateManyWithWhereWithoutUserInput | UserAnswersUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
+  }
+
+  export type UserAnswersUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput> | UserAnswersCreateWithoutUserInput[] | UserAnswersUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserAnswersCreateOrConnectWithoutUserInput | UserAnswersCreateOrConnectWithoutUserInput[]
+    upsert?: UserAnswersUpsertWithWhereUniqueWithoutUserInput | UserAnswersUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserAnswersCreateManyUserInputEnvelope
+    set?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    disconnect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    delete?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    connect?: UserAnswersWhereUniqueInput | UserAnswersWhereUniqueInput[]
+    update?: UserAnswersUpdateWithWhereUniqueWithoutUserInput | UserAnswersUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserAnswersUpdateManyWithWhereWithoutUserInput | UserAnswersUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
   }
 
   export type QuestionsCreateNestedManyWithoutTypeInput = {
@@ -9585,6 +9900,34 @@ export namespace Prisma {
     update?: QuestionsUpdateWithWhereUniqueWithoutTypeInput | QuestionsUpdateWithWhereUniqueWithoutTypeInput[]
     updateMany?: QuestionsUpdateManyWithWhereWithoutTypeInput | QuestionsUpdateManyWithWhereWithoutTypeInput[]
     deleteMany?: QuestionsScalarWhereInput | QuestionsScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutUserAnswersInput = {
+    create?: XOR<UserCreateWithoutUserAnswersInput, UserUncheckedCreateWithoutUserAnswersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserAnswersInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type QuestionsCreateNestedOneWithoutUserAnswersInput = {
+    create?: XOR<QuestionsCreateWithoutUserAnswersInput, QuestionsUncheckedCreateWithoutUserAnswersInput>
+    connectOrCreate?: QuestionsCreateOrConnectWithoutUserAnswersInput
+    connect?: QuestionsWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutUserAnswersNestedInput = {
+    create?: XOR<UserCreateWithoutUserAnswersInput, UserUncheckedCreateWithoutUserAnswersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserAnswersInput
+    upsert?: UserUpsertWithoutUserAnswersInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserAnswersInput, UserUpdateWithoutUserAnswersInput>, UserUncheckedUpdateWithoutUserAnswersInput>
+  }
+
+  export type QuestionsUpdateOneRequiredWithoutUserAnswersNestedInput = {
+    create?: XOR<QuestionsCreateWithoutUserAnswersInput, QuestionsUncheckedCreateWithoutUserAnswersInput>
+    connectOrCreate?: QuestionsCreateOrConnectWithoutUserAnswersInput
+    upsert?: QuestionsUpsertWithoutUserAnswersInput
+    connect?: QuestionsWhereUniqueInput
+    update?: XOR<XOR<QuestionsUpdateToOneWithWhereWithoutUserAnswersInput, QuestionsUpdateWithoutUserAnswersInput>, QuestionsUncheckedUpdateWithoutUserAnswersInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9789,6 +10132,31 @@ export namespace Prisma {
     create: XOR<TeamCreateWithoutQuestionsInput, TeamUncheckedCreateWithoutQuestionsInput>
   }
 
+  export type UserAnswersCreateWithoutQuestionInput = {
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+    user: UserCreateNestedOneWithoutUserAnswersInput
+  }
+
+  export type UserAnswersUncheckedCreateWithoutQuestionInput = {
+    id?: number
+    userId: number
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+  }
+
+  export type UserAnswersCreateOrConnectWithoutQuestionInput = {
+    where: UserAnswersWhereUniqueInput
+    create: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput>
+  }
+
+  export type UserAnswersCreateManyQuestionInputEnvelope = {
+    data: UserAnswersCreateManyQuestionInput | UserAnswersCreateManyQuestionInput[]
+    skipDuplicates?: boolean
+  }
+
   export type QuestionTypeUpsertWithoutQuestionsInput = {
     update: XOR<QuestionTypeUpdateWithoutQuestionsInput, QuestionTypeUncheckedUpdateWithoutQuestionsInput>
     create: XOR<QuestionTypeCreateWithoutQuestionsInput, QuestionTypeUncheckedCreateWithoutQuestionsInput>
@@ -9831,6 +10199,34 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutTeamNestedInput
   }
 
+  export type UserAnswersUpsertWithWhereUniqueWithoutQuestionInput = {
+    where: UserAnswersWhereUniqueInput
+    update: XOR<UserAnswersUpdateWithoutQuestionInput, UserAnswersUncheckedUpdateWithoutQuestionInput>
+    create: XOR<UserAnswersCreateWithoutQuestionInput, UserAnswersUncheckedCreateWithoutQuestionInput>
+  }
+
+  export type UserAnswersUpdateWithWhereUniqueWithoutQuestionInput = {
+    where: UserAnswersWhereUniqueInput
+    data: XOR<UserAnswersUpdateWithoutQuestionInput, UserAnswersUncheckedUpdateWithoutQuestionInput>
+  }
+
+  export type UserAnswersUpdateManyWithWhereWithoutQuestionInput = {
+    where: UserAnswersScalarWhereInput
+    data: XOR<UserAnswersUpdateManyMutationInput, UserAnswersUncheckedUpdateManyWithoutQuestionInput>
+  }
+
+  export type UserAnswersScalarWhereInput = {
+    AND?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
+    OR?: UserAnswersScalarWhereInput[]
+    NOT?: UserAnswersScalarWhereInput | UserAnswersScalarWhereInput[]
+    id?: IntFilter<"UserAnswers"> | number
+    userId?: IntFilter<"UserAnswers"> | number
+    questionId?: IntFilter<"UserAnswers"> | number
+    answer?: StringFilter<"UserAnswers"> | string
+    created_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
+    updated_datetime?: DateTimeFilter<"UserAnswers"> | Date | string
+  }
+
   export type UserCreateWithoutRoleInput = {
     username: string
     password: string
@@ -9840,6 +10236,7 @@ export namespace Prisma {
     updated_datetime?: Date | string
     active?: boolean
     team: TeamCreateNestedOneWithoutUsersInput
+    userAnswers?: UserAnswersCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -9852,6 +10249,7 @@ export namespace Prisma {
     created_datetime?: Date | string
     updated_datetime?: Date | string
     active?: boolean
+    userAnswers?: UserAnswersUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRoleInput = {
@@ -9905,6 +10303,7 @@ export namespace Prisma {
     updated_datetime?: Date | string
     active?: boolean
     role: RoleCreateNestedOneWithoutUsersInput
+    userAnswers?: UserAnswersCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeamInput = {
@@ -9917,6 +10316,7 @@ export namespace Prisma {
     created_datetime?: Date | string
     updated_datetime?: Date | string
     active?: boolean
+    userAnswers?: UserAnswersUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeamInput = {
@@ -9937,6 +10337,7 @@ export namespace Prisma {
     created_datetime?: Date | string
     updated_datetime?: Date | string
     type: QuestionTypeCreateNestedOneWithoutQuestionsInput
+    UserAnswers?: UserAnswersCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsUncheckedCreateWithoutTeamInput = {
@@ -9948,6 +10349,7 @@ export namespace Prisma {
     correct_answer: string
     created_datetime?: Date | string
     updated_datetime?: Date | string
+    UserAnswers?: UserAnswersUncheckedCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsCreateOrConnectWithoutTeamInput = {
@@ -10037,6 +10439,31 @@ export namespace Prisma {
     create: XOR<TeamCreateWithoutUsersInput, TeamUncheckedCreateWithoutUsersInput>
   }
 
+  export type UserAnswersCreateWithoutUserInput = {
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+    question: QuestionsCreateNestedOneWithoutUserAnswersInput
+  }
+
+  export type UserAnswersUncheckedCreateWithoutUserInput = {
+    id?: number
+    questionId: number
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+  }
+
+  export type UserAnswersCreateOrConnectWithoutUserInput = {
+    where: UserAnswersWhereUniqueInput
+    create: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserAnswersCreateManyUserInputEnvelope = {
+    data: UserAnswersCreateManyUserInput | UserAnswersCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type RoleUpsertWithoutUsersInput = {
     update: XOR<RoleUpdateWithoutUsersInput, RoleUncheckedUpdateWithoutUsersInput>
     create: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
@@ -10079,6 +10506,22 @@ export namespace Prisma {
     questions?: QuestionsUncheckedUpdateManyWithoutTeamNestedInput
   }
 
+  export type UserAnswersUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserAnswersWhereUniqueInput
+    update: XOR<UserAnswersUpdateWithoutUserInput, UserAnswersUncheckedUpdateWithoutUserInput>
+    create: XOR<UserAnswersCreateWithoutUserInput, UserAnswersUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserAnswersUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserAnswersWhereUniqueInput
+    data: XOR<UserAnswersUpdateWithoutUserInput, UserAnswersUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserAnswersUpdateManyWithWhereWithoutUserInput = {
+    where: UserAnswersScalarWhereInput
+    data: XOR<UserAnswersUpdateManyMutationInput, UserAnswersUncheckedUpdateManyWithoutUserInput>
+  }
+
   export type QuestionsCreateWithoutTypeInput = {
     question: string
     options: JsonNullValueInput | InputJsonValue
@@ -10087,6 +10530,7 @@ export namespace Prisma {
     created_datetime?: Date | string
     updated_datetime?: Date | string
     team: TeamCreateNestedOneWithoutQuestionsInput
+    UserAnswers?: UserAnswersCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsUncheckedCreateWithoutTypeInput = {
@@ -10098,6 +10542,7 @@ export namespace Prisma {
     correct_answer: string
     created_datetime?: Date | string
     updated_datetime?: Date | string
+    UserAnswers?: UserAnswersUncheckedCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionsCreateOrConnectWithoutTypeInput = {
@@ -10126,6 +10571,165 @@ export namespace Prisma {
     data: XOR<QuestionsUpdateManyMutationInput, QuestionsUncheckedUpdateManyWithoutTypeInput>
   }
 
+  export type UserCreateWithoutUserAnswersInput = {
+    username: string
+    password: string
+    name: string
+    email?: string | null
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+    active?: boolean
+    role: RoleCreateNestedOneWithoutUsersInput
+    team: TeamCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutUserAnswersInput = {
+    id?: number
+    username: string
+    password: string
+    name: string
+    email?: string | null
+    roleId: number
+    teamId: number
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+    active?: boolean
+  }
+
+  export type UserCreateOrConnectWithoutUserAnswersInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserAnswersInput, UserUncheckedCreateWithoutUserAnswersInput>
+  }
+
+  export type QuestionsCreateWithoutUserAnswersInput = {
+    question: string
+    options: JsonNullValueInput | InputJsonValue
+    image?: string | null
+    correct_answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+    type: QuestionTypeCreateNestedOneWithoutQuestionsInput
+    team: TeamCreateNestedOneWithoutQuestionsInput
+  }
+
+  export type QuestionsUncheckedCreateWithoutUserAnswersInput = {
+    id?: number
+    question: string
+    options: JsonNullValueInput | InputJsonValue
+    image?: string | null
+    typeId: number
+    teamId: number
+    correct_answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+  }
+
+  export type QuestionsCreateOrConnectWithoutUserAnswersInput = {
+    where: QuestionsWhereUniqueInput
+    create: XOR<QuestionsCreateWithoutUserAnswersInput, QuestionsUncheckedCreateWithoutUserAnswersInput>
+  }
+
+  export type UserUpsertWithoutUserAnswersInput = {
+    update: XOR<UserUpdateWithoutUserAnswersInput, UserUncheckedUpdateWithoutUserAnswersInput>
+    create: XOR<UserCreateWithoutUserAnswersInput, UserUncheckedCreateWithoutUserAnswersInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserAnswersInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserAnswersInput, UserUncheckedUpdateWithoutUserAnswersInput>
+  }
+
+  export type UserUpdateWithoutUserAnswersInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    team?: TeamUpdateOneRequiredWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserAnswersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: IntFieldUpdateOperationsInput | number
+    teamId?: IntFieldUpdateOperationsInput | number
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type QuestionsUpsertWithoutUserAnswersInput = {
+    update: XOR<QuestionsUpdateWithoutUserAnswersInput, QuestionsUncheckedUpdateWithoutUserAnswersInput>
+    create: XOR<QuestionsCreateWithoutUserAnswersInput, QuestionsUncheckedCreateWithoutUserAnswersInput>
+    where?: QuestionsWhereInput
+  }
+
+  export type QuestionsUpdateToOneWithWhereWithoutUserAnswersInput = {
+    where?: QuestionsWhereInput
+    data: XOR<QuestionsUpdateWithoutUserAnswersInput, QuestionsUncheckedUpdateWithoutUserAnswersInput>
+  }
+
+  export type QuestionsUpdateWithoutUserAnswersInput = {
+    question?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    correct_answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: QuestionTypeUpdateOneRequiredWithoutQuestionsNestedInput
+    team?: TeamUpdateOneRequiredWithoutQuestionsNestedInput
+  }
+
+  export type QuestionsUncheckedUpdateWithoutUserAnswersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    question?: StringFieldUpdateOperationsInput | string
+    options?: JsonNullValueInput | InputJsonValue
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    typeId?: IntFieldUpdateOperationsInput | number
+    teamId?: IntFieldUpdateOperationsInput | number
+    correct_answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAnswersCreateManyQuestionInput = {
+    id?: number
+    userId: number
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+  }
+
+  export type UserAnswersUpdateWithoutQuestionInput = {
+    answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserAnswersNestedInput
+  }
+
+  export type UserAnswersUncheckedUpdateWithoutQuestionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAnswersUncheckedUpdateManyWithoutQuestionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateManyRoleInput = {
     id?: number
     username: string
@@ -10147,6 +10751,7 @@ export namespace Prisma {
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     team?: TeamUpdateOneRequiredWithoutUsersNestedInput
+    userAnswers?: UserAnswersUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -10159,6 +10764,7 @@ export namespace Prisma {
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    userAnswers?: UserAnswersUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -10205,6 +10811,7 @@ export namespace Prisma {
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
+    userAnswers?: UserAnswersUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamInput = {
@@ -10217,6 +10824,7 @@ export namespace Prisma {
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    userAnswers?: UserAnswersUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutTeamInput = {
@@ -10239,6 +10847,7 @@ export namespace Prisma {
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: QuestionTypeUpdateOneRequiredWithoutQuestionsNestedInput
+    UserAnswers?: UserAnswersUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsUncheckedUpdateWithoutTeamInput = {
@@ -10250,6 +10859,7 @@ export namespace Prisma {
     correct_answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserAnswers?: UserAnswersUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsUncheckedUpdateManyWithoutTeamInput = {
@@ -10259,6 +10869,37 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     typeId?: IntFieldUpdateOperationsInput | number
     correct_answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAnswersCreateManyUserInput = {
+    id?: number
+    questionId: number
+    answer: string
+    created_datetime?: Date | string
+    updated_datetime?: Date | string
+  }
+
+  export type UserAnswersUpdateWithoutUserInput = {
+    answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    question?: QuestionsUpdateOneRequiredWithoutUserAnswersNestedInput
+  }
+
+  export type UserAnswersUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    questionId?: IntFieldUpdateOperationsInput | number
+    answer?: StringFieldUpdateOperationsInput | string
+    created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserAnswersUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    questionId?: IntFieldUpdateOperationsInput | number
+    answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10282,6 +10923,7 @@ export namespace Prisma {
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     team?: TeamUpdateOneRequiredWithoutQuestionsNestedInput
+    UserAnswers?: UserAnswersUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsUncheckedUpdateWithoutTypeInput = {
@@ -10293,6 +10935,7 @@ export namespace Prisma {
     correct_answer?: StringFieldUpdateOperationsInput | string
     created_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_datetime?: DateTimeFieldUpdateOperationsInput | Date | string
+    UserAnswers?: UserAnswersUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionsUncheckedUpdateManyWithoutTypeInput = {
