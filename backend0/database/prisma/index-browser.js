@@ -125,7 +125,7 @@ exports.Prisma.QuestionsScalarFieldEnum = {
   question: 'question',
   options: 'options',
   image: 'image',
-  type: 'type',
+  typeId: 'typeId',
   teamId: 'teamId',
   correct_answer: 'correct_answer',
   created_datetime: 'created_datetime',
@@ -153,6 +153,20 @@ exports.Prisma.UserScalarFieldEnum = {
   created_datetime: 'created_datetime',
   updated_datetime: 'updated_datetime',
   active: 'active'
+};
+
+exports.Prisma.QuestionTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.UserAnswersScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  answer: 'answer',
+  created_datetime: 'created_datetime',
+  updated_datetime: 'updated_datetime'
 };
 
 exports.Prisma.SortOrder = {
@@ -185,7 +199,9 @@ exports.Prisma.ModelName = {
   Questions: 'Questions',
   Role: 'Role',
   Team: 'Team',
-  User: 'User'
+  User: 'User',
+  QuestionType: 'QuestionType',
+  UserAnswers: 'UserAnswers'
 };
 
 /**

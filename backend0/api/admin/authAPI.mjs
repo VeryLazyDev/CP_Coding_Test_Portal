@@ -47,7 +47,14 @@ authApi.post("/login", async (req, res) => {
             team.teamName,
             role.roleName,
         );
-        return res.status(200).json({ status: "ok", token });
+        return res.status(200).json({
+            name: dbUser.name,
+            username: dbUser.username,
+            email: dbUser.email,
+            team: team.teamName,
+            role: role.roleName,
+            token,
+        });
     } catch (e) {
         return res
             .status(500)
@@ -79,7 +86,7 @@ authApi.post("/register", async (req, res) => {
 
         //hash the password of new user
         const hashedPassword = await hashPassword(password);
-        const newUser = createNewUser(
+        const newUser = await createNewUser(
             name,
             username,
             email,
@@ -89,6 +96,12 @@ authApi.post("/register", async (req, res) => {
         );
         return res.status(200).json({ status: "ok", data: { newUser } });
     } catch (e) {
+        if (e.code === "P2002") {
+            // Unique constraint failed
+            return res.status(409).json({
+                error: `Username "${e.meta.target}" already exists`,
+            });
+        }
         return res.status(500).json({
             error: "Internal Server Error: " + e.message,
         });

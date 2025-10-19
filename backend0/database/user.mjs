@@ -3,6 +3,13 @@ export async function getAllUsers() {
     const users = await prisma.user.findMany();
     return users;
 }
+export async function getUsersByTeamId(teamId) {
+    const user = await prisma.user.findMany({ where: teamId });
+}
+export async function getUsersByRoleId(roleId) {
+    const user = await prisma.user.findMany({ where: roleId });
+    return user;
+}
 export async function getUserByID(id) {
     const user = await prisma.user.findUnique({
         where: {

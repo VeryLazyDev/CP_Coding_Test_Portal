@@ -1,9 +1,3 @@
-openapi: 3.0.3
-info:
-    title: CP Coding Test
-    version: 1.0.0
-    description: API documentation for CP Coding Test
-
 paths:
     /api/v1/admin/auth/register:
         post:

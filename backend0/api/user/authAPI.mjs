@@ -4,22 +4,48 @@ import {
     hashPassword,
     verifyPassword,
 } from "../../utils/authentication.mjs";
+import { getTeamById } from "../../database/team.mjs";
+import { getRoleById } from "../../database/role.mjs";
+import { getUserByUsername } from "../../database/user.mjs";
 const authApi = Express.Router();
 
 authApi.post("/login", async (req, res) => {
-    const hashedPassword = await hashPassword("iambatman");
-    const checkUsername = "Bruce";
-    const { username, password } = req.body;
-
-    if (
-        (await verifyPassword(password, hashedPassword)) &&
-        username === checkUsername
-    ) {
-        const token = createToken(1, username, "AMS");
-        return res.json({ token, msg: "Login Success" });
+    try {
+        const { username, password } = req.body;
+        const dbUser = await getUserByUsername(username);
+        if (!dbUser) {
+            return res
+                .status(401)
+                .json({ error: "Incorrect username or password" });
+        }
+        const passwordVerify = await verifyPassword(password, dbUser.password);
+        const team = await getTeamById(dbUser.teamId);
+        const role = await getRoleById(dbUser.roleId);
+        if (!passwordVerify) {
+            return res
+                .status(401)
+                .json({ error: "Incorrect username or password" });
+        }
+        const token = createToken(
+            dbUser.id,
+            dbUser.username,
+            dbUser.name,
+            dbUser.email,
+            team.teamName,
+            role.roleName,
+        );
+        return res.json({
+            token,
+            name: dbUser.name,
+            username: dbUser.username,
+            email: dbUser.email,
+            team: team.teamName,
+        });
+    } catch (e) {
+        return res
+            .status(500)
+            .json({ error: "Internal Server Error : " + e.message });
     }
-
-    res.status(401).json({ msg: "Login Failed" });
 });
 
 export default authApi;

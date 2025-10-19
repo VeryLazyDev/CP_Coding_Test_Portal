@@ -15,16 +15,18 @@ datasource db {
 }
 
 model Questions {
-  id               Int      @id @default(autoincrement())
+  id               Int           @id @default(autoincrement())
   question         String
   options          Json
   image            String?
-  type             String
+  typeId           Int
+  type             QuestionType  @relation(fields: [typeId], references: [id])
   teamId           Int
-  team             Team     @relation(fields: [teamId], references: [id])
+  team             Team          @relation(fields: [teamId], references: [id])
   correct_answer   String
-  created_datetime DateTime @default(now())
-  updated_datetime DateTime @updatedAt
+  created_datetime DateTime      @default(now())
+  updated_datetime DateTime      @updatedAt
+  UserAnswers      UserAnswers[]
 }
 
 model Role {
@@ -41,16 +43,34 @@ model Team {
 }
 
 model User {
-  id               Int      @id @default(autoincrement())
-  username         String   @unique
-  password         String   @db.Text
+  id               Int           @id @default(autoincrement())
+  username         String        @unique
+  password         String        @db.Text
   name             String
   email            String?
   roleId           Int
-  role             Role     @relation(fields: [roleId], references: [id])
+  role             Role          @relation(fields: [roleId], references: [id])
   teamId           Int
-  team             Team     @relation(fields: [teamId], references: [id])
-  created_datetime DateTime @default(now())
-  updated_datetime DateTime @updatedAt
-  active           Boolean  @default(true)
+  team             Team          @relation(fields: [teamId], references: [id])
+  created_datetime DateTime      @default(now())
+  updated_datetime DateTime      @updatedAt
+  active           Boolean       @default(true)
+  userAnswers      UserAnswers[]
+}
+
+model QuestionType {
+  id        Int         @id @default(autoincrement())
+  name      String
+  Questions Questions[]
+}
+
+model UserAnswers {
+  id               Int       @id @default(autoincrement())
+  userId           Int
+  user             User      @relation(fields: [userId], references: [id])
+  questionId       Int
+  question         Questions @relation(fields: [questionId], references: [id])
+  answer           String
+  created_datetime DateTime  @default(now())
+  updated_datetime DateTime  @updatedAt
 }

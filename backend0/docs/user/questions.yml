@@ -1,0 +1,101 @@
+paths:
+  /api/v1/user/questions:
+    get:
+      summary: Get all questions for the user's team
+      description: >
+        Returns a list of questions filtered by the user's team.
+        The `Authorization` header (JWT token) is required for authentication.
+      tags:
+        - User Questions
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successfully fetched questions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  questions:
+                    type: array
+                    description: List of questions for the user's team.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 12
+                        question:
+                          type: string
+                          example: "What is a Mouse?"
+                        options:
+                          type: array
+                          items:
+                            type: string
+                          example: ["Animal", "Input Device", "Rat", "Non of the above"]
+                        teamId:
+                          type: integer
+                          example: 3
+                        category:
+                          type: string
+                          example: "MultiSelect"
+        "401":
+          description: Unauthorized - Invalid or missing authorization token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid authorization token
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal Server Error : database not reachable"
+
+  /api/v1/user/questions/types:
+    get:
+      summary: Get available question types
+      description: >
+        Returns all available question types.
+        (Currently not implemented.)
+      tags:
+        - User Questions
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successfully fetched question types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  types:
+                    type: array
+                    example: ["Multiple Choice", "True/False", "Short Answer"]
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error : not implemented
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

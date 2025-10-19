@@ -45,7 +45,7 @@ export async function verifyPassword(password, hashedPassword) {
     return isMatch;
 }
 
-export function checkAuthorization(authorization) {
+export function checkAuthorization(authorization, user = fasle) {
     try {
         //Check authorization header
         if (!authorization) {
@@ -83,14 +83,20 @@ export function checkAuthorization(authorization) {
             return { auth: false, status: 401, error: "Unauthorize Token" };
         }
         //check role
-        if (verify.role !== "Admin") {
+        if (verify.role !== "Admin" && !user) {
             return {
                 auth: false,
                 status: 401,
                 error: "Only admin can access this feature",
             };
         }
-        return { auth: true, status: 200 };
+        return {
+            auth: true,
+            status: 200,
+            team: verify.team,
+            role: verify.role,
+            userId: verify.userid,
+        };
     } catch (e) {
         return { auth: false, status: 500, error: "Internal Server Error" };
     }
