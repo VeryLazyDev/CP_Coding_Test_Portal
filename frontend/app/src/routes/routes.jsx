@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AdminLayout, HomePage, UserLayout } from "../constants/Lazyload";
+import { AdminLayout, DashboardPage, HomePage, UserLayout } from "../constants/Lazyload";
 import { authRouter } from "./authRouter";
 
 const router = createBrowserRouter([
@@ -7,7 +7,7 @@ const router = createBrowserRouter([
     {element:<HomePage/>,index:true}
   ] },
   {path:"/admin",element:<AdminLayout/>,children:[
-    {element:}
+    {element:<DashboardPage/>}
   ]},
   ...authRouter
 ]);

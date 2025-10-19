@@ -8,8 +8,7 @@ import { login } from "../../../services/authService";
 import { useNavigate } from "react-router";
 
 const LoginForm = () => {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
 
   const {
@@ -24,14 +23,23 @@ const LoginForm = () => {
       console.log("Log in.....");
 
       const response = await login(data);
-console.log("RESPONSE",response);
+      console.log("RESPONSE", response);
 
-
-
-      if (response.status===200) {
-      
+      if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        navigate("/");
+        localStorage.setItem("user", response.data.username);
+        localStorage.setItem("role",response.data.role);
+
+
+          if(response.data.role==="Admin")  {
+            navigate("/admin");
+          } else {
+             navigate("/")
+          }
+
+         
+
+      
       }
     } catch (err) {
       console.error(err);
