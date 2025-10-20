@@ -45,7 +45,7 @@ export async function verifyPassword(password, hashedPassword) {
     return isMatch;
 }
 
-export function checkAuthorization(authorization, user = fasle) {
+export function checkAuthorization(authorization, user = false) {
     try {
         //Check authorization header
         if (!authorization) {
