@@ -2,7 +2,12 @@ import Express from "express";
 import RegisterRoutesAdmin from "./api/admin/APIRegisterAdmin.mjs";
 import RegisterRoutesUser from "./api/user/APIRegisterUser.mjs";
 import UtilityApi from "./api/utilityApi.mjs";
-
+import Initializer from "./utils/initializer.mjs";
+import { fileURLToPath } from "url";
+import path from "path";
+import serveUI from "./api/serveUserInterface.mjs";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = Express();
 const port = process.env.PORT | 8080;
 
