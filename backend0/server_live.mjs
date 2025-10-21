@@ -4,7 +4,7 @@ import RegisterRoutesUser from "./api/user/APIRegisterUser.mjs";
 import UtilityApi from "./api/utilityApi.mjs";
 
 const app = Express();
-const port = 8080;
+const port = process.env.PORT | 8080;
 
 //This will initialize all the require features
 Initializer();
