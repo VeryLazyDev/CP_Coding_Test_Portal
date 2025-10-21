@@ -1,1 +1,0 @@
-import{j as e,O as s}from"./index-CAVcMu30.js";import{F as r}from"./index-CLvfaoYm.js";const a=()=>e.jsxs("div",{className:"w-screen h-screen ",children:[e.jsx("div",{children:e.jsx(r,{position:"top-center",reverseOrder:!1})}),e.jsx(s,{})]});export{a as default};
