@@ -3,9 +3,16 @@ function MultipleChoice({
   question, 
   image, 
   options = [], 
+   questionId,
   name = "question", 
   onChange 
 }) {
+
+ const handleChange = (value) => {
+    onChange?.({ questionId, value }); // send both questionId and selected value
+  };
+
+
   return (
     <div className={`border border-blue-500 p-4 rounded-xl  ${className}`}>
       {/* Question */}
@@ -36,7 +43,7 @@ function MultipleChoice({
                 type="radio" 
                 name={name} 
                 value={opt} 
-                onChange={() => onChange?.(opt)} 
+                onChange={() => handleChange(opt)} 
                 className="accent-blue-600 w-5 h-5"
               />
               <span className="text-blue-800">{opt}</span>
