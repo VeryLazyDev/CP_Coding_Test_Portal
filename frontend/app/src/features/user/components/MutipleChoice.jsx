@@ -26,17 +26,22 @@ function MultipleChoice({
 
       {/* Options (only one selectable) */}
       <div className="flex flex-col items-start gap-2">
-        {options.map((opt, i) => (
-          <label key={i} className="flex items-center gap-2 cursor-pointer">
-            <input 
-              type="radio" 
-              name={name} 
-              value={opt} 
-              onChange={() => onChange?.(opt)} 
-            />
-            <span>{opt}</span>
-          </label>
-        ))}
+       {Array.isArray(options?.answers) && options.answers.length > 0 ? (
+  options.answers.map((opt, i) => (
+    <label key={i} className="flex items-center gap-2 cursor-pointer">
+      <input 
+        type="radio" 
+        name={name} 
+        value={opt} 
+        onChange={() => onChange?.(opt)} 
+      />
+      <span>{opt}</span>
+    </label>
+  ))
+) : (
+  <div className="text-slate-500 italic">No options available.</div>
+)}
+
       </div>
     </div>
   );
