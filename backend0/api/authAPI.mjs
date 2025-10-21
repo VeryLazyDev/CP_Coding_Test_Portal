@@ -1,6 +1,10 @@
 import Express from "express";
 import { getUserByUsername } from "../database/user.mjs";
-import { createToken, verifyPassword } from "../utils/authentication.mjs";
+import {
+    checkAuthorization,
+    createToken,
+    verifyPassword,
+} from "../utils/authentication.mjs";
 import { getTeamById } from "../database/team.mjs";
 import { getRoleById } from "../database/role.mjs";
 const authApi = Express.Router();
@@ -44,6 +48,21 @@ authApi.post("/login", async (req, res) => {
             role: role.roleName,
             token,
         });
+    } catch (e) {
+        return res
+            .status(500)
+            .json({ error: "Internal Server Error : " + e.message });
+    }
+});
+//check api
+authApi.use("/check", async (req, res) => {
+    try {
+        const { authorization } = req.headers;
+        const verification = checkAuthorization(authorization, true);
+        if (!verification.auth) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
+        res.status(200).json({ message: "Authorized" });
     } catch (e) {
         return res
             .status(500)
