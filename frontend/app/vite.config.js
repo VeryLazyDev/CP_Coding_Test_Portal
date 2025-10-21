@@ -15,7 +15,7 @@ export default defineConfig({
       // 👇 This means: any request starting with /api
       // will be sent to your backend
       "/api": {
-        target: "http://cp-coding-test-portal.onrender.com", // change this to your backend URL/port
+        target: "https://cp-coding-test-portal.onrender.com", // change this to your backend URL/port
         changeOrigin: true,
         secure: false,
       },
