@@ -7,7 +7,7 @@ import YAML from "yamljs";
 import cors from "cors";
 import merge from "lodash.merge";
 import UtilityApi from "./api/utilityApi.mjs";
-
+import GlobalAuthApi from "./api/authAPI.mjs";
 const app = Express();
 const port = 8080;
 
@@ -21,6 +21,7 @@ app.use(cors());
 //This is where all the routes are define
 app.use("/api/v1/user", RegisterRoutesUser);
 app.use("/api/v1/admin", RegisterRoutesAdmin);
+app.use("/api/v1/auth", GlobalAuthApi);
 app.use("/api/utils", UtilityApi);
 
 //Swagger

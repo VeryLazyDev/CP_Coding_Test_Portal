@@ -1,0 +1,72 @@
+
+paths:
+  /api/v1/auth/login:
+    post:
+      summary: Global login
+      description: >
+        Authenticates a user with `username` and `password`.
+        Returns a JWT token and user information including team and role.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  example: "Bruce"
+                password:
+                  type: string
+                  example: "iambatman"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "Bruce Wayne"
+                  username:
+                    type: string
+                    example: "Bruce"
+                  email:
+                    type: string
+                    example: "bruce@example.com"
+                  team:
+                    type: string
+                    example: "AMS"
+                  role:
+                    type: string
+                    example: "Admin"
+                  token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        "401":
+          description: Invalid username or password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Incorrect username or password
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error : database connection failed

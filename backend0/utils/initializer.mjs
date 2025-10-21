@@ -16,10 +16,13 @@ export default function Initializer() {
 export function swaggerLoader() {
     const docsPathUser = path.resolve(__dirname, "../docs/user");
     const docsPathAdmin = path.resolve(__dirname, "../docs/admin");
+    const docsPath = path.resolve(__dirname, "../docs/");
     const swaggerAdminAuth = YAML.load(`${docsPathAdmin}/adminAuth.yml`);
     const swaggerUserAnswers = YAML.load(`${docsPathUser}/userAnswers.yml`);
     const swaggerUserQuestions = YAML.load(`${docsPathUser}/questions.yml`);
     const swaggerUserAuth = YAML.load(`${docsPathUser}/userAuth.yml`);
+    const swaggerAdminQuestions = YAML.load(`${docsPathAdmin}/questions.yml`);
+    const swaggerAuthAPI = YAML.load(`${docsPath}/auth.yml`);
     const swaggerDocs = merge(
         {
             openapi: "3.0.3",
@@ -29,10 +32,12 @@ export function swaggerLoader() {
                 description: "API documentation for CP Coding Test",
             },
         },
+        swaggerAuthAPI,
         swaggerAdminAuth,
         swaggerUserAnswers,
         swaggerUserQuestions,
         swaggerUserAuth,
+        swaggerAdminQuestions,
     );
     return swaggerDocs;
 }
