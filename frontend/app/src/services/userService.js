@@ -16,6 +16,6 @@ export const submitAnswers=async (data) => {
         const response=await axiosInstance.post(getApiUrl(API_ENDPOINT.SUBMIT_ANSWERS,data));
         return response;
     } catch (error) {
-        throw new error 
+        console.error(error)
     }
 }

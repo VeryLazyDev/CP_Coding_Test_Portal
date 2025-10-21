@@ -6,103 +6,42 @@ import { getAllQuestions } from "../../../services/userService";
 
 const HomePage = () => {
     const [ques, setQues] = useState([]);
+   useEffect(() => {
+    
+    const fetchQues = async () => {
+      try {
+        const response = await getAllQuestions();
 
-    //you shouldn't use async like this bro this is kinda wrong
-    useEffect(async () => {
-        try {
-            const response = await getAllQuestions();
-            console.log("QUES LIST", response);
-            if (response.status === 200) {
-                setQues(response.data.questions);
-            }
-        } catch (error) {
-            console.log("FETCH AT Component", error);
+
+  
+        
+        console.log("QUES LIST", response);
+        if (response.status === 200) {
+          setQues(response.data.questions);
         }
-    }, []);
+      } catch (error) {
+        console.error("FETCH AT Component", error);
+      }
+    };
+
+   
+    fetchQues();
+  }, []);
+
+
+
+
+  console.log("DATA",ques);
+  
+
 
     return (
-        <div className="max-w-6xl h-dvh  mx-auto   ">
-            {/* <div className='flex flex-col p-1 gap-4 w-full h-3/4  bg-red-50  overflow-y-scroll scroll-smooth'>
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-
-
-  <MultipleChoice
-  question="What is JWT?"
-  // image="https://placehold.co/200"
-  options={["JSON Web Token", "Java Web Token", "Joint Web Transfer", "JavaScript Web Tool"]}
-  onChange={(value) => console.log("Selected:", value)}
-/>
-
-
-
-</div> */}
+        <div className="max-w-6xl h-screen flex flex-col mx-auto gap-2 justify-center overflow-y-hidden">
+      
 
             <QuesList data={ques} />
 
-            <button className="bg-blue-500 text-white px-3 py-2 rounded-md">
+            <button className="bg-blue-500 cursor-pointer text-white px-3 py-2 w-2xs rounded-md">
                 SAVE
             </button>
         </div>

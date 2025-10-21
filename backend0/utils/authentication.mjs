@@ -4,8 +4,8 @@ import bcrypt, { hash } from "bcrypt";
 let SECRET_KEY = null;
 let SALTS = 10;
 export function generateSecret(size = 32) {
-    const randomBytes = crypto.randomBytes(size);
-    SECRET_KEY = randomBytes.toString("base64");
+    // const randomBytes = crypto.randomBytes(size);
+    SECRET_KEY = "1dd45f6e989e2cdf51ed40aa0d9d99a93e7aadb3bdefe06cc9e18e4d91088764";
 }
 
 export function createToken(userid, username, name, email, team, role) {
