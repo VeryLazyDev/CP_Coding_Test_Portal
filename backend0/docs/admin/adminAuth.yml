@@ -111,7 +111,7 @@ paths:
 
     /api/v1/admin/auth/login:
         post:
-            summary: Admin login
+            summary: Admin login (Will remove soon)
             description: Authenticates the admin and returns a JWT token if credentials are valid.
             tags:
                 - Authentication

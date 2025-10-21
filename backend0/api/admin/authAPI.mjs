@@ -32,12 +32,12 @@ authApi.post("/login", async (req, res) => {
         //get user team and role
         const team = await getTeamById(dbUser.teamId);
         const role = await getRoleById(dbUser.roleId);
-        if (role.roleName !== "Admin") {
-            console.log("This is not the admin account");
-            return res
-                .status(401)
-                .json({ error: "Incorrect username or password" });
-        }
+        // if (role.roleName !== "Admin") {
+        //     console.log("This is not the admin account");
+        //     return res
+        //         .status(401)
+        //         .json({ error: "Incorrect username or password" });
+        // }
         //create json token
         const token = createToken(
             dbUser.id,
