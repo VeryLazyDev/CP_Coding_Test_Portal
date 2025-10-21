@@ -3,6 +3,7 @@ import RegisterRoutesAdmin from "./api/admin/APIRegisterAdmin.mjs";
 import RegisterRoutesUser from "./api/user/APIRegisterUser.mjs";
 import UtilityApi from "./api/utilityApi.mjs";
 import Initializer from "./utils/initializer.mjs";
+import GlobalAuthApi from "./api/authAPI.mjs";
 import { fileURLToPath } from "url";
 import path from "path";
 import serveUI from "./api/serveUserInterface.mjs";
@@ -20,6 +21,7 @@ app.use(Express.json());
 //This is where all the routes are define
 app.use("/api/v1/user", RegisterRoutesUser);
 app.use("/api/v1/admin", RegisterRoutesAdmin);
+app.use("/api/v1/auth", GlobalAuthApi);
 app.use("/api/utils", UtilityApi);
 // --- Serve static files ---
 app.use(Express.static(path.join(__dirname, "dist")));
