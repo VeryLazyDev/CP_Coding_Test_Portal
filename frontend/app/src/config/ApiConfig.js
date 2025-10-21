@@ -10,7 +10,7 @@ export const getServerUrl=()=>{
 }
 
 export const API_ENDPOINT = {
-  LOGIN: "/api/v1/admin/auth/login",
+  LOGIN: "/api/v1/auth/login",
   GETQUESTIONS:"/api/v1/user/questions",
   SUBMIT_ANSWERS:"/api/v1/user/answer/submit"
 };

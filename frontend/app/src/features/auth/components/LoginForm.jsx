@@ -17,36 +17,35 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    setLoading(true);
-    try {
-      console.log("Log in.....");
+const onSubmit = async (data) => {
+  setLoading(true);
+  try {
+    const response = await login(data);
 
-      const response = await login(data);
-      console.log("RESPONSE", response);
+    // If your API wraps the user in data.data
+    const userData = response.data; 
 
-      if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", response.data.username);
-        localStorage.setItem("role",response.data.role);
+    console.log(userData);
+    
 
+    if (response.status === 200 && userData?.token) {
+      localStorage.setItem("token", userData.token);
+      localStorage.setItem("user", userData.username);
+      localStorage.setItem("role", userData.role);
 
-          if(response.data.role==="Admin")  {
-            navigate("/admin");
-          } else {
-             navigate("/")
-          }
-
-         
-
-      
+      if (userData.role === "Admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
       }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Login failed!");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form

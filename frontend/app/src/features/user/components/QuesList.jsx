@@ -12,7 +12,7 @@ const QuesList = ({data}) => {
 
         
 
-{data.length >2 && data.map((que)=>(
+{data.length >0 && data.map((que)=>(
     <MultipleChoice key={que.id} question={que.question} options={que.options} name={que.category} />
 ))}
     

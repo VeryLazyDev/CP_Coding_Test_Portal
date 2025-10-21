@@ -1,0 +1,206 @@
+
+paths:
+  /api/v1/admin/questions/create:
+    post:
+      summary: Create a new question
+      description: >
+        Creates a new question for a specific team.
+        Requires admin authentication via the `Authorization` header.
+        Supports multiple question types (MCQ, True/False, Short Answer, Image-based).
+        Type ID `3` (image-based) requires a valid `image` URL.
+      tags:
+        - Admin Questions
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - question
+                - typeId
+                - correct_answer
+                - teamId
+              properties:
+                question:
+                  type: string
+                  example: "Who is batman?"
+                options:
+                  type: object
+                  nullable: true
+                  description: Required only for multiple-choice questions.
+                  properties:
+                    answers:
+                      type: array
+                      items:
+                        type: string
+                image:
+                  type: string
+                  nullable: true
+                  description: Required only for typeId `3` (image-based questions).
+                typeId:
+                  type: integer
+                  description: >
+                    Question type ID
+                    - `1` → Multiple Choice
+                    - `2` → Short Answer
+                    - `3` → Image-based Multiple Choice
+                    - `4` → True/False
+                correct_answer:
+                  type: string
+                teamId:
+                  type: integer
+            examples:
+              multipleChoice:
+                summary: Multiple Choice
+                value:
+                  question: "Who is batman ?"
+                  options:
+                    answers:
+                      - "Thomas Wayne"
+                      - "Bruce Wayne"
+                      - "Oliver Queen"
+                      - "Barry Allen"
+                  image: null
+                  typeId: 1
+                  correct_answer: "Bruce Wayne"
+                  teamId: 1
+              trueFalse:
+                summary: True/False Question
+                value:
+                  question: "Am I correct?"
+                  options: null
+                  image: null
+                  typeId: 4
+                  correct_answer: "false"
+                  teamId: 1
+              shortAnswer:
+                summary: Short Input Answer
+                value:
+                  question: "Who is batman ?"
+                  options: null
+                  image: null
+                  typeId: 2
+                  correct_answer: "Bruce Wayne"
+                  teamId: 1
+              mcqWithImage:
+                summary: Multiple Choice with Image
+                value:
+                  question: "Choose the correct answer?"
+                  options: null
+                  image: "https://someurl.com/image"
+                  typeId: 3
+                  correct_answer: "c"
+                  teamId: 1
+      responses:
+        "201":
+          description: Question created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+        "400":
+          description: Invalid request or missing data
+        "401":
+          description: Unauthorized - Admin authentication required
+
+  /api/v1/question:
+    get:
+      summary: Get all questions for a specific team
+      description: >
+        Returns all questions for the given team ID.
+        Requires a valid `Authorization` header.
+      tags:
+        - Questions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: teamId
+          in: query
+          required: true
+          description: ID of the team to fetch questions for
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: Successfully fetched questions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: All questions for AMS Team.
+                  data:
+                    type: array
+                    description: List of questions for the team
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 12
+                        question:
+                          type: string
+                          example: "Who is batman?"
+                        options:
+                          type: object
+                          nullable: true
+                          example:
+                            answers:
+                              - "Thomas Wayne"
+                              - "Bruce Wayne"
+                              - "Oliver Queen"
+                              - "Barry Allen"
+                        image:
+                          type: string
+                          nullable: true
+                          example: null
+                        typeId:
+                          type: integer
+                          example: 1
+                        correct_answer:
+                          type: string
+                          example: "Bruce Wayne"
+                        teamId:
+                          type: integer
+                          example: 1
+        "401":
+          description: Unauthorized - Invalid or missing authorization
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid authorization token
+        "400":
+          description: Internal server error or bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: Internal Server Error:
+                  error:
+                    type: string
+                    example: Database connection failed
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

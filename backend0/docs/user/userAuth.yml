@@ -1,7 +1,7 @@
 paths:
     /api/v1/user/auth/login:
         post:
-            summary: User login
+            summary: User login (Will remove soon)
             description: >
                 Authenticates a user with `username` and `password`.
                 Returns a JWT token and basic user info on success.

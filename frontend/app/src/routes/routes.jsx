@@ -10,7 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
-    element: <ProtectedRoute allowedRoles={["user", "Admin"]} />,
+    element: <ProtectedRoute allowedRoles={["User", "Admin"]} />,
     children: [
       {
         path: "/",

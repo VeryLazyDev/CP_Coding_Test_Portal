@@ -12,8 +12,13 @@ const axiosInstance=axios.create({
 axiosInstance.interceptors.request.use(
     (config)=> {
         const token = localStorage.getItem("token")
+      
+        
+        
         if(token) {
             config.headers.Authorization=`Bearer ${token}`;
+            console.log(config.headers.Authorization);
+            
         }
         return config
     },
@@ -32,7 +37,8 @@ axiosInstance.interceptors.response.use(
     if(status===401) {
         console.error("Auth Error:",error);
         localStorage.removeItem("token");
-        localStorage.setItem("user");
+        localStorage.removeItem("user");
+        localStorage.removeItem("role")
     }
 
     return Promise.reject(error)

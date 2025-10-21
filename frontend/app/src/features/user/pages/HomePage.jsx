@@ -11,6 +11,10 @@ const HomePage = () => {
     const fetchQues = async () => {
       try {
         const response = await getAllQuestions();
+
+
+  
+        
         console.log("QUES LIST", response);
         if (response.status === 200) {
           setQues(response.data.questions);
@@ -32,7 +36,7 @@ const HomePage = () => {
 
 
     return (
-        <div className="max-w-6xl h-screen flex flex-col mx-auto gap-3 justify-center overflow-y-hidden">
+        <div className="max-w-6xl h-screen flex flex-col mx-auto gap-2 justify-center overflow-y-hidden">
       
 
             <QuesList data={ques} />

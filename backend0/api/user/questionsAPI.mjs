@@ -9,7 +9,7 @@ QuestionsAPI.get("/", async (req, res) => {
     try {
         //check authorization
         const { authorization } = req.headers;
-        const checkAuth = checkAuthorization(authorization, false);
+        const checkAuth = checkAuthorization(authorization, true);
         if (!checkAuth.auth) {
             return res
                 .status(checkAuth.status)
