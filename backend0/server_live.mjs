@@ -16,7 +16,11 @@ app.use(Express.json());
 app.use("/api/v1/user", RegisterRoutesUser);
 app.use("/api/v1/admin", RegisterRoutesAdmin);
 app.use("/api/utils", UtilityApi);
+// --- Serve static files ---
+app.use(Express.static(path.join(__dirname, "dist")));
 
+// --- SPA fallback (catch-all) ---
+app.use("/", serveUI);
 app.listen(port, () => {
     console.log(`Server is listen to http://localhost:${port}`);
 });
