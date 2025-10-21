@@ -9,6 +9,7 @@ import path from "path";
 import serveUI from "./api/serveUserInterface.mjs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+import cors from "cors";
 const app = Express();
 const port = process.env.PORT | 8080;
 
@@ -17,6 +18,7 @@ Initializer();
 
 //Use as middleware for decoding json
 app.use(Express.json());
+app.use(cors());
 
 //This is where all the routes are define
 app.use("/api/v1/user", RegisterRoutesUser);
