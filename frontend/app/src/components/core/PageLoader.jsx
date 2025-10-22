@@ -1,10 +1,11 @@
 import { Suspense } from "react"
+import Loading from "../common/Loading"
 
-export default function PageLoader(Compnent){
+export default function PageLoader(Component){
     return function WrappedComponent(props){
         return(
-            <Suspense fallback={<>Loading</>}>
-                <Compnent  {...props} />
+            <Suspense fallback={<Loading/>}>
+                <Component  {...props} />
             </Suspense>
         )
     }

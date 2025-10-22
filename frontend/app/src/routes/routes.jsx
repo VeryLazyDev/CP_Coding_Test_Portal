@@ -4,6 +4,7 @@ import {
   DashboardPage,
   HomePage,
   UserLayout,
+  UserPage,
 } from "../constants/Lazyload";
 import { authRouter } from "./authRouter";
 import ProtectedRoute from "./ProtectedRoute";
@@ -26,7 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AdminLayout />,
-        children: [{ element: <DashboardPage /> }],
+        children: [{ element: <DashboardPage /> ,index:true },
+          {element:<UserPage/>, path:"users"}],
       },
     ],
   },

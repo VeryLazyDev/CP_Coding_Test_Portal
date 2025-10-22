@@ -45,12 +45,12 @@ const SideBar = ({navs,team}) => {
           <NavLink
             key={link.name}
             to={link.path}
-            end={link.path === "/admin" || "/cashier"}  
+            end
             className={({ isActive }) =>
           `flex items-center ${collapsed && `justify-center` } gap-3 p-2 rounded-lg transition ${
                 isActive
-                  ? "bg-black text-white"
-                  : "text-black hover:bg-black hover:text-white"
+                  ? "bg-blue-600 text-white"
+                  : "text-black hover:bg-blue-500 hover:text-white"
               }`
             }
           >

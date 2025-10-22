@@ -1,8 +1,12 @@
 import React from 'react'
+import Loading from '../../../components/common/Loading';
 
 const DashboardPage = () => {
   return (
-    <div>Page</div>
+    <div className=''>
+    
+     
+    </div>
   )
 }
 

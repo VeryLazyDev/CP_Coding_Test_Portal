@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import QuesList from "../components/QuesList";
-import { getAllQuestions } from "../../../services/userService";
+import { getAllQuestions, submitAnswers } from "../../../services/userService";
+import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 const HomePage = () => {
   const [ques, setQues] = useState([]);
+  const [loading,setLoading]=useState(false);
   const [answers, setAnswers] = useState({}); // store all selected answers
 
   // Fetch all questions
@@ -27,10 +30,25 @@ const HomePage = () => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
   };
 
-  const saveAnswers = () => {
+  const saveAnswers =async () => {
     console.log("All Answers:", answers);
-    // Here you can call your API to save answers
-    // e.g., await saveUserAnswers(answers)
+    setLoading(true)
+    try {
+      const response=await submitAnswers(answers);
+      if(response===200) {
+        toast.success("Submitted Successfully")
+      } else {
+        toast.error("Something went wrong")
+      }
+      
+    } catch (error) {
+      console.error(error);
+      
+    }finally{
+      setLoading(false);
+      setAnswers({})
+    }
+   
   };
 
   return (
@@ -39,9 +57,10 @@ const HomePage = () => {
 
       <button
         onClick={saveAnswers}
+        disabled={loading}
         className="bg-blue-500 cursor-pointer text-white px-3 py-2 w-32 rounded-md hover:bg-blue-600 transition"
       >
-        SAVE
+       {loading ? <ClipLoader size={20} color="white"/> : "SAVE"}
       </button>
     </div>
   );
