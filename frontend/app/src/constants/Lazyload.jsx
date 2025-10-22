@@ -19,3 +19,7 @@ export const AdminLayout = PageLoader(
 export const DashboardPage = PageLoader(
     lazy(() => import("@/features/admin/pages/DashboardPage.jsx")),
 );
+
+export const UserPage=PageLoader(
+    lazy(()=>import("@/features/admin/pages/UserPage.jsx"))
+)
